@@ -1,0 +1,22 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    End of game and Final Results
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        Your total payoff is selected randomly from the results of {{Constants.num_rounds}} rounds.
+
+    </p>
+
+    <p>
+        As a result, you earned {{ player.total_payoff }} in total.
+    </p>
+
+    {% next_button %}
+
+
+{% endblock %}

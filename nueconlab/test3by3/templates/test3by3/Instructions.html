@@ -1,0 +1,60 @@
+{% load otree %}
+
+<div class="card bg-light instructions">
+    <div class="card-body">
+
+    <h3>
+        Instructions
+    </h3>
+
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'global/matrix.css' %}"/>
+
+    <p>
+        In this game, you will be randomly and anonymously paired with another
+        participant. At the beginning of each round you will randomly set a role of either Inspector or a Firm.
+        Each of you simultaneously and privately chooses whether you want to
+        comply/not comply if you are a Firm and inspect/not inspect if you are the Inspector.
+        Your payoffs will be determined by the choices of both as below:
+    </p>
+    <p><i>In each cell, the amount to the left is the payoff for the Inspector
+        and to the right for the Firm.</i></p>
+    <p><i>For example, if Firm decides to Fully comply and Inspector chooses No inspection, Firm gets 100 points
+        and Inspector - 400 points.</i></p>
+
+    <table class='table table-bordered text-center'
+           style='width: auto; margin: auto'>
+        <tr>
+            <th colspan=2 rowspan=2></th>
+            <th colspan=3>Firm</th>
+        </tr>
+        <tr>
+            <th>Fully Comply</th>
+            <th>Partially Comply</th>
+            <th>Not comply</th>
+        </tr>
+        <tr>
+            <th rowspan=3><span class="rotate90">Inspector</span></th>
+            <th>Full inspection</th>
+            <td>{{ Constants.insp_FI}}, {{ Constants.firm_fully_comply}}</td>
+            <td>{{ Constants.insp_PF}}, {{ Constants.firm_PF }}</td>
+            <td>{{ Constants.insp_NF}}, {{ Constants.firm_NF }}</td>
+        </tr>
+        <tr>
+            <th>Light inspection</th>
+            <td>{{ Constants.insp_FL}}, {{ Constants.firm_fully_comply}}</td>
+            <td>{{ Constants.insp_PL}}, {{ Constants.firm_PL }}</td>
+            <td>{{ Constants.insp_NL}}, {{ Constants.firm_NL }}</td>
+        </tr>
+        <tr>
+            <th>No inspection</th>
+            <td>{{ Constants.insp_FN}}, {{ Constants.firm_fully_comply}}</td>
+            <td>{{ Constants.insp_PN}}, {{ Constants.firm_PN }}</td>
+            <td>{{ Constants.insp_NN}}, {{ Constants.firm_NN}}</td>
+        </tr>
+    </table>
+
+</div>
+</div>
+
+

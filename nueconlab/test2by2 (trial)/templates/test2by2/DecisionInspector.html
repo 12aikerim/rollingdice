@@ -1,0 +1,40 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Your Choice
+{% endblock %}
+
+{% block content %}
+
+    <div class="form-group required">
+        <p> You are Inspector. Make your choice accordingly</p>
+        <table class="table table-bordered text-center" style="width: auto; margin: auto">
+            <tr>
+                <th colspan="2" rowspan="2"></th>
+                <th colspan="2">Firm</th>
+            </tr>
+            <tr>
+                <th>Comply</th>
+                <th>Not comply</th>
+            </tr>
+            <tr>
+                <th rowspan="2"><span>You</span></th>
+                <td><button name="decision" value="Inspect" class="btn btn-primary btn-large">I will inspect</button></td>
+                <td>{{Constants.inspectors_comply_payoff}}, {{Constants.inspectors_comply_payoff}}</td>
+                <td>{{ Constants.inspectors_notcomply_payoff }}, 0 </td>
+            </tr>
+            <tr>
+                <td><button name="decision" value="Not inspect" class="btn btn-primary btn-large">I will not inspect</button></td>
+                <td>{{Constants.inspectors_comply_payoff}}, {{ Constants.firms_notinspect_payoff }}</td>
+                <td>{{Constants.inspectors_bothbetray_payoff}}, {{Constants.firms_bothbetray_payoff}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <p>Here you can chat with the other participant.</p>
+
+    {% chat %}
+
+
+{% endblock %}
