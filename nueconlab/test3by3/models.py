@@ -22,7 +22,7 @@ p = []
 class Constants(BaseConstants):
     name_in_url = 'test3by3'
     players_per_group = 2
-    num_rounds = 2
+    num_rounds = 10
 
     instructions_template = 'test3by3/Instructions.html'
 
