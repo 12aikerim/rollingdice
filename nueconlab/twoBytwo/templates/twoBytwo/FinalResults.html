@@ -6,8 +6,7 @@
 {% endblock %}
 
 {% block content %}
-
-    <p>
+     <p>
         Your total payoff is selected randomly from the results of {{Constants.num_rounds}} rounds. In previous rounds you earned:</p>
 
         <ol>
@@ -16,15 +15,18 @@
         {% endfor %}
         </ol>
 
-    <p> As a result, in Game One computer randomly selected</p>
+    <p> As a result, in Game Three computer randomly selected</p>
         <ul>{%for i in random_payments%}
     <li>{{i|c}}</li>
         {%endfor%}
-        </ul>
+        </ul>.
 
 
     <p> Your total payoff of this game is {{round_earning}}.
+        At this point your accumulated tokens are {{participant.payoff}}
     </p>
+
+
 
     {% next_button %}
 

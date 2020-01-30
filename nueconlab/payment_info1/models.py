@@ -31,4 +31,5 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    pass
+    def convert(self):
+        return self.participant.payoff.to_real_world_currency(self.session)

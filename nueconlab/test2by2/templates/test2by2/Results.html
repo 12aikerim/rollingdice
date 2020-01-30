@@ -8,16 +8,27 @@
 {% block content %}
 
     <p>
-            You chose to {{ my_decision }} and the other participant chose to {{ opponent_decision }}.
+            You chose
+         {%if my_decision == "Comply"%} {{"UP"}}
+         {% elif my_decision == "Not_comply" %} {{"DOWN"}}
+         {% elif my_decision == "Inspect" %} {{"LEFT"}}
+         {% else %} {{"RIGHT"}}
+        {%endif%}
+        and the other participant chose
+        {%if opponent_decision == "Comply"%} {{"UP"}}
+         {%elif opponent_decision == "Not_comply" %} {{"DOWN"}}
+         {%elif opponent_decision == "Inspect"%}{{"LEFT"}}
+         {%else%} {{"RIGHT"}}
+        {%endif%}
 
     </p>
 
     <p>
         As a result, you earned {{ player.payoff }} in round # {{player.round_number}}.
-    </p>
 
+    </p>
+{% include Constants.instructions_template %}
     {% next_button %}
 
-    {% include Constants.instructions_template %}
 
 {% endblock %}

@@ -18,33 +18,39 @@ author = 'vouch11'
 doc = """
 Test 2-by-2 inspector vs. firm game 
 """
-
-
+p = []  # type: list
 
 class Constants(BaseConstants):
-    name_in_url = 'game1'
+    name_in_url = 'firm-vs-agency'
     players_per_group = 2
     num_rounds = 30
-    k = 3 #number of randomly selected rounds
-
+    k = 3  # number of randomly selected rounds
+    Revenue = 60
+    cost = 40
+    on_paper = 10
+    Budget = 60
+    expert = 40
+    intern = 10
+    fine = 50
+    environment = 50
     # constants with links to pages
-    instructions_template = 'test2by2/Instructions.html'
-    intro_screen = 'test2by2/Screen1.html'
-    screen_2 = 'test2by2/Screen2.html'
-    screen_3 = 'test2by2/Screen3.html'
+    instructions_template = 'twoBytwo/Instructions.html'
 
 
-    #Player A points in Game one
-    ul = c(20) # UP when LEFT
-    dl = c(10) # DOWN when LEFT
-    ur = c(20) # UP when RIGHT
-    dr = c(60) # DOWN when RIGHT
+    survey ='twoBytwo/Screen3.html'
+
+
+    # Player A points in Game one
+    ul = c(20)  # UP when LEFT
+    dl = c(10)  # DOWN when LEFT
+    ur = c(20)  # UP when RIGHT
+    dr = c(60)  # DOWN when RIGHT
 
     # Player B points in Game one
-    lu = c(20) #LEFT when UP
-    ld = c(20) #LEFT when DOWN
-    ru = c(60) #RIGHT when UP
-    rd = c(10) #RIGHT when DOWN
+    lu = c(20)  # LEFT when UP
+    ld = c(20)  # LEFT when DOWN
+    ru = c(60)  # RIGHT when UP
+    rd = c(10)  # RIGHT when DOWN
 
     # firm's points
     firm_IC = ul  # comply when inspected
@@ -70,30 +76,15 @@ class Group(BaseGroup):
         for p in self.get_players():
             p.set_payoff()
 
+    pass
 
 class Player(BasePlayer):
-
     def role(self):
         if self.id_in_group == 1:
             return 'inspector'
         else:
             return 'firm'
 
-    q1 = models.StringField(
-        choices=['Yes', 'No'],
-        label='Will you hold the same role assigned to you at the beginning of the experiment throughout the game?',
-        widget=widgets.RadioSelect,
-    )
-    q2 = models.StringField(
-        choices=[['Yes', 'Yes'], ['No', 'No']],
-        label='Will your decisions affect the final payoff you will collect?',
-        widget=widgets.RadioSelect,
-    )
-    q3 = models.StringField(
-        choices=[['Yes', 'Yes'], ['No', 'No']],
-        label='Do payoffs of each game get selected randomly from each 20 rounds towards your final payoff?',
-        widget=widgets.RadioSelect,
-    )
 
     decision = models.StringField(
         choices=['Inspect', 'Comply','Not_inspect', 'Not_comply'],
@@ -113,32 +104,34 @@ class Player(BasePlayer):
             Not_comply=dict(
                 Inspect=Constants.firm_IN, Not_inspect=Constants.firm_NN
             ),
-            Inspect = dict(
-                Comply = Constants.insp_IC,
-                Not_comply = Constants.insp_IN,
+            Inspect=dict(
+                Comply=Constants.insp_IC,
+                Not_comply=Constants.insp_IN,
             ),
-            Not_inspect = dict(
-                Comply = Constants.insp_NC,
-                Not_comply = Constants.insp_NN,
+            Not_inspect=dict(
+                Comply=Constants.insp_NC,
+                Not_comply=Constants.insp_NN,
             ),
 
         )
         self.payoff = payoff_matrix[self.decision][self.other_player().decision]
 
+
     def total_payoff(self):
 
         listOfPayments = [p.payoff for p in self.in_all_rounds()]
         temp = random.sample(listOfPayments, Constants.k)
+        total = sum(temp)
+        self.participant.vars['lump'].append(total)
+        self.participant.payoff = sum(self.participant.vars['lump'])
 
-        total=sum(temp)
-        self.participant.payoff = total
-        self.participant.vars['lump'] =[total]
-        print(self.participant.vars['lump'])
+        print("lump in game 3 is ",self.participant.vars['lump'])
 
         return dict(
             list_of_all_payments=listOfPayments,
             round_earning=total,
             random_payments=temp, )
+
 
     pass
 

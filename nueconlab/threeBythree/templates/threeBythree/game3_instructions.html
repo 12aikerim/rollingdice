@@ -1,0 +1,110 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{%block title%}
+Game Four
+{% endblock %}
+
+
+{% block content %}
+<div class="card bg-light instructions">
+    <div class="card-body">
+
+
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'global/matrix.css' %}"/>
+{% if player.role == 'inspector'%}
+
+    <p>
+        In this game you will keep the role of Agency as you had in Game Three. Again,
+you will be matched with a different player in the other role in each round.
+And again, your decisions together with the decisions of the people that you
+will be matched with will determine your earnings. In each round you will start with {{Budget|c}}.</p>
+        <p>
+        The strategies available to each player are similar to the previous game and the cost of environmental damage is {{environment|c}}.
+            But in this game both players have one more option available before they decide.
+    </p>
+        <p>
+            You can now hire two types of inspectors.
+            <ul>
+        <li>Expert inspectors cost {{expert|c}} but they can conduct a DETAILED INSPECTION, which increases the
+            chance of detection if the Firm is not complying.</li>
+        <li>Inexperienced inspectors cost just {{intern|c}} but they can conduct only a QUICK INSPECTION which
+            decreases the chance of detection if the Firm is not complying.</li>
+            </ul>
+        The new alternative option for The Firm is COMPLIANCE ON PAPERS. FULL COMPLIANCE costs  {{cost|c}}
+        to the Firm and eliminates the possibility of a fine. COMPLIANCE ON PAPERS costs {{on_paper|c}}. It reduces the probability of
+        detection but it does not prevent environmental damage.
+         <p>The probability of the fine depends on the Firm and Inspectors mutual choices:</p>
+        <ul>
+        <li> If you decide to conduct DETAILED INSPECTION and Firm decides to NOT COMPLY, the Firm will be caught.</li>
+        <li>If you decide to conduct QUICK INSPECTION and Firm decides to NOT COMPLY, you will catch them 90% of the time.</li>
+            <li> If you choose DETAILED INSPECTION and Firm chooses COMPLIANCE ON PAPERS, the Firm will be caught 90% of the time. </li>
+        <li>If you choose QUICK INSPECTION and Firm chooses COMPLIANCE ON PAPERS, the Firm will not be caught.</li>
+        </ul> </p>
+{% else %}
+     <p>
+        In this game you will keep the role of the Firm as you had in Game Three. Again,
+you will be matched with a different player in the other role in each round.
+And again, your decisions together with the decisions of the people that you
+will be matched with will determine your earnings. In each round you will start with {{Revenue|c}}.</p>
+        <p>
+        The strategies available to each player are similar to the previous game and the cost of environmental damage is {{environment|c}}.
+            But in this game both players have one more option available before they decide.
+    </p>
+        <p>
+            You can now choose between two types of compliance to environmental regulations:
+            <ul>
+        <li>COMPLIANCE ON PAPERS, which will cost you {{on_paper|c}}. It reduces the probability of being penalized by Agency to 90%, but it
+        does not prevent environmental damage.</li>
+        <li>FULL COMPLIANCE, which will cost you {{cost|c}}. It reduces the probability of being penalized by Agency to 0%. </li>
+            </ul>
+        The new alternative for the Agency is that now they can decide what kind of inspector to hire for the inspection. They can choose
+        between expert (DETAILED INSPECTION) and inexperienced inspectors (QUICK INSPECTION), that will cost them {{expert|c}} and {{intern|c}} respectively. </p>
+    <p>The probability of the fine depends on the Firm and Inspectors mutual choices:</p>
+         <ul>
+        <li> If you decide to NOT COMPLY and The Agency chooses DETAILED INSPECTION, the you will be caught.</li>
+        <li>If you decide to NOT COMPLY and The Agency chooses QUICK INSPECTION, the you will be caught 90% of the time.</li>
+        <li> If you decide COMPLIANCE ON PAPERS and The Agency chooses DETAILED INSPECTION, the you will be caught 90% of the time. </li>
+        <li>If you decide COMPLIANCE ON PAPERS and The Agency chooses QUICK INSPECTION, the you will not be caught.</li>
+         </ul>
+{% endif %}
+    <!--    <p>You will collect the points according to the table below:</p>
+
+    <table class='table table-bordered text-center'
+           style='width: auto; margin: auto'>
+        <tr>
+            <th colspan=2 rowspan=2></th>
+            <th colspan=3>Agency</th>
+        </tr>
+        <tr>
+            <th>DETAILED INSPECTION</th>
+            <th>QUICK INSPECTION</th>
+            <th>NO INSPECTION</th>
+        </tr>
+        <tr>
+            <th rowspan=3>FIRM</th>
+            <th>FULL COMPLIANCE</th>
+            <td>{{ Constants.firm_fully_comply}}, {{ Constants.insp_FI}}</td>
+            <td>{{ Constants.firm_fully_comply}}, {{ Constants.insp_FL }}</td>
+            <td>{{ Constants.firm_fully_comply}}, {{ Constants.insp_FN }}</td>
+        </tr>
+        <tr>
+            <th>COMPLIANCE ON PAPERS</th>
+            <td>{{ Constants.firm_PF}}, {{ Constants.insp_PF}}</td>
+            <td>{{ Constants.firm_PL}}, {{ Constants.insp_PL }}</td>
+            <td>{{ Constants.firm_PN}}, {{ Constants.insp_PN }}</td>
+        </tr>
+        <tr>
+            <th>NO COMPLIANCE</th>
+            <td>{{ Constants.firm_NF}}, {{ Constants.insp_NF}}</td>
+            <td>{{ Constants.firm_NL}}, {{ Constants.insp_NL }}</td>
+            <td>{{ Constants.firm_NN}}, {{ Constants.insp_NN}}</td>
+        </tr>
+    </table>-->
+<p> You will now play {{Constants.num_rounds}} rounds of this game. In each round you will see the payoff table and decide about your choice.
+    If you have understood the game and the rules please click Next to begin playing.</p>
+</div>
+</div>
+{% next_button %}
+{% endblock %}

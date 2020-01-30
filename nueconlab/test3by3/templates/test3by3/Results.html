@@ -8,7 +8,21 @@
 {% block content %}
 
     <p>
-            You chose to {{ my_decision }} and the other participant chose to {{ opponent_decision }}.
+            You chose
+        {%if my_decision == "Fully_Comply"%} {{"UP"}}
+        {%elif my_decision == "Partially_Comply"%} {{"MIDDLE"}}
+         {% elif my_decision == "Not_Comply" %} {{"DOWN"}}
+         {% elif my_decision == "Full_Inspection" %} {{"LEFT"}}
+         {% elif my_decision == "Light_Inspection" %} {{"CENTER"}}
+         {% else %} {{"RIGHT"}}
+        {%endif%}
+         and the other participant chose
+        {%if opponent_decision == "Fully_Comply"%} {{"UP"}}
+        {%elif opponent_decision == "Partially_Comply"%} {{"MIDDLE"}}
+         {% elif opponent_decision == "Not_Comply" %} {{"DOWN"}}
+         {% elif opponent_decision == "Full_Inspection" %} {{"LEFT"}}
+         {% elif opponent_decision == "Light_Inspection" %} {{"CENTER"}}
+         {% else %} {{"RIGHT"}} {%endif%}.
 
     </p>
 
@@ -18,6 +32,6 @@
 
     {% next_button %}
 
-    {% include Constants.instructions_template %}
 
 {% endblock %}
+

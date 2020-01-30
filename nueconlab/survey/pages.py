@@ -6,12 +6,17 @@ from .models import Constants
 
 class Demographics(Page):
     form_model = 'player'
-    form_fields = ['age', 'gender']
+    form_fields = ['age', 'gender','citizen','residence', 'degree', 'participation','experience_econ','experience_game','risk_tolerance',
+                   'inform_source','problem']
 
 
-class CognitiveReflectionTest(Page):
+class QuestionaireOnExperiment(Page):
     form_model = 'player'
-    form_fields = ['crt_bat', 'crt_widget', 'crt_lake']
+    form_fields = ['Q{}'.format(i) for i in range(1, 11)]
+
+class FinalPageAfterSurvey(Page):
+    pass
 
 
-page_sequence = [Demographics, CognitiveReflectionTest]
+
+page_sequence = [Demographics, QuestionaireOnExperiment,FinalPageAfterSurvey]

@@ -1,0 +1,159 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+{% block title %}
+Game Two
+{% endblock %}
+{% block content %}
+<div class="card bg-light instructions">
+    <div class="card-body">
+
+
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'global/matrix.css' %}"/>
+{% if player.role == 'inspector'%}
+
+    <p>
+        This game is similar to Game One. You will keep your role (Player B) assigned to you previously and you
+        will again be paired with another player randomly by the computer. You will not know the identity
+        of the person with whom you are paired each round. Your task is again to
+        make decisions as per your assigned role for {{Constants.num_rounds}} rounds.
+        </p>
+        <p>In this game, you will have three strategies, instead of two. Now you
+        can now move  LEFT or CENTER or RIGHT and Player A can move UP or MIDDLE or DOWN . You will not be able to see the other player’s choice until
+        you submit your choice and the other player will not see your choice. In each round you will start with {{Budget|c}}. You
+        will earn points in each round according to the following rules:</p>
+     <p>
+        <ul>
+        <li> If you decide to move LEFT it will cost you {{expert|c}}.</li>
+        <li> If you decide to move RIGHT it will cost you {{environment|c}}.</li>
+        <li>If you decide to move CENTER and Player A decides to move DOWN, it will cost you {{60|c}} but also you will get {{fine|c}} 90% of the time from your opponent.</li>
+        <li> If you choose LEFT and Player A chooses MIDDLE, it will cost you {{90|c}} but also you will get {{fine|c}} 90% of the time or 0 points 10% of the time. </li>
+        <li>If you choose CENTER and Player A chooses MIDDLE, you will not get any points, while Player A will get 50 points.</li>
+        </ul>
+     </p>
+
+{% else %}
+
+        This game is similar to Game One. You will keep your role (Player A) assigned to you previously and you
+        will again be paired with another player randomly by the computer. You will not know the identity
+        of the person with whom you are paired each round. Your task is again to
+        make decisions as per your assigned role for {{Constants.num_rounds}} rounds.
+        </p>
+        <p>In this game, you will have three strategies, instead of two. Now you
+        can now move UP or MIDDLE or DOWN and Player B can move LEFT or
+        CENTER or RIGHT. You will not be able to see the other player’s choice until
+        you submit your choice and the other player will not see your choice.In each round you will start with {{Revenue|c}}. You
+        will earn points in each round according to the following rules:</p>
+        <!--FROM PREVIOUS GAME-->
+        <p>
+         <ul>
+        <li> If you decide to move UP it will cost you {{cost|c}}.</li>
+        <li> If you decide to move DOWN it will cost you {{fine|c}}.</li>
+        <li>If you decide to move DOWN and Player B decides to move CENTER, it will cost you {{fine|c}}  90% of the time  or 0 points 10 % of the time.</li>
+        <li> If you choose MIDDLE and Player B chooses LEFT, it will cost you {{60|c}}  90% of the time or {{10|c}} 10% of the time. </li>
+        <li>If you choose MIDDLE and Player B chooses CENTER, you will not get 50 points, while Player B will not get any points.</li>
+         </ul>
+{% endif %}
+
+
+  <!--  <link rel="stylesheet" type="text/css"
+          href="{% static 'global/matrix.css' %}"/>
+
+    <p>
+        This game is similar to Game One. You will keep your role (Player A or
+        Player B) assigned to you previously and you will again be paired with
+        another player randomly by the computer. You will not know the identity
+        of the person with whom you are paired each round. Your task is again to
+        make decisions as per your assigned role for {{Constants.num_rounds}} rounds.</p>
+        <p>
+        In this game, you will have three strategies, instead of two. Player A
+        can now move UP or MIDDLE or DOWN and Player B can move LEFT or
+        CENTER or RIGHT. You will not be able to see the other player’s choice until
+        you submit your choice and the other player will not see your choice. You
+        will earn points in each round according to the following rules:
+    </p>
+    <p>A) If you are Player A you will move UP, MIDDLE or DOWN.</p>
+         <ul>
+        <li> If you move UP you will earn {{ Constants.firm_fully_comply}}.</li>
+        <li>If you move MIDDLE, you will earn {{ Constants.firm_PF}} or {{ Constants.firm_PL}} depending on Player B’s move.</li>
+        </ul>
+        <ul class = "dashed">
+        <li>You will get {{ Constants.firm_PF}} if Player B moves LEFT,</li>
+        <li>You will get {{ Constants.firm_PL}} if Player B moves CENTER or RIGHT.</li>
+        </ul>
+        <ul>
+            <li>If you move DOWN, you will earn {{ Constants.firm_NF}}, {{ Constants.firm_NL}} or {{ Constants.firm_NN}}  depending on Player B’s move.</li>
+        </ul>
+        <ul class="dashed">
+            <li>You will get {{ Constants.firm_NF}}  if Player B moves LEFT,</li>
+            <li>You will get {{ Constants.firm_NL}}  if Player B moves CENTER,</li>
+            <li>You will get {{ Constants.firm_NN}}  if Player B moves RIGHT.</li>
+        </ul>
+
+
+     <p> B) If you are Player B you will move LEFT, CENTER or RIGHT.</p>
+        <p>
+     <ul>
+        <li>If you move LEFT you will earn {{ Constants.insp_FI}} or {{ Constants.insp_PF}}  depending on Player A’s move.</li>
+    </ul>
+    <ul class = "dashed">
+        <li>You will get {{ Constants.insp_FI}} if Player A moves UP or DOWN,</li>
+        <li>You will get {{ Constants.insp_PF}} if Player A moves MIDDLE.</li>
+    </ul>
+    <ul>
+        <li>If you move RIGHT, you will earn {{ Constants.insp_FN}} or {{Constants.insp_NN}} depending on Player A’s move.</li>
+    </ul>
+        <ul class = "dashed">
+            <li>You will get {{ Constants.insp_FN}} if Player A moves UP,</li>
+            <li>You will get {{Constants.insp_NN}} if Player A moves DOWN or MIDDLE.</li>
+        </ul>
+    <ul>
+        <li>If you move CENTER, you will earn {{Constants.insp_PL}}, {{Constants.insp_NL}} or {{Constants.insp_FL}} depending on Player B’s move.</li>
+    </ul>
+        <ul class = "dashed">
+            <li> You will get {{Constants.insp_FL}} if Player A moves UP,</li>
+            <li>You will get {{Constants.insp_PL}} if Player A moves MIDDLE,</li>
+            <li>You will get {{Constants.insp_NL}} if Player A moves DOWN.</li>
+        </ul>
+
+        <p>In the following table we summarize these rules.</p>
+        <p>In each cell the number on the left indicates points for Player A and the number on the right
+            indicates points for Player B.</p>
+
+    <table class='table table-bordered text-center'
+           style='width: auto; margin: auto'>
+        <tr>
+            <th colspan=2 rowspan=2></th>
+            <th colspan=3>Player B</th>
+        </tr>
+        <tr>
+            <th>LEFT</th>
+            <th>CENTER</th>
+            <th>RIGHT</th>
+        </tr>
+        <tr>
+            <th rowspan=3>Player A</th>
+            <th>UP</th>
+            <td>{{ Constants.firm_fully_comply}}, {{ Constants.insp_FI}}</td>
+            <td>{{ Constants.firm_fully_comply}}, {{ Constants.insp_FL }}</td>
+            <td>{{ Constants.firm_fully_comply}}, {{ Constants.insp_FN }}</td>
+        </tr>
+        <tr>
+            <th>MIDDLE</th>
+            <td>{{ Constants.firm_PF}}, {{ Constants.insp_PF}}</td>
+            <td>{{ Constants.firm_PL}}, {{ Constants.insp_PL }}</td>
+            <td>{{ Constants.firm_PN}}, {{ Constants.insp_PN }}</td>
+        </tr>
+        <tr>
+            <th>DOWN</th>
+            <td>{{ Constants.firm_NF}}, {{ Constants.insp_NF}}</td>
+            <td>{{ Constants.firm_NL}}, {{ Constants.insp_NL }}</td>
+            <td>{{ Constants.firm_NN}}, {{ Constants.insp_NN}}</td>
+        </tr>
+    </table>
+<p> You will now play {{Constants.num_rounds}} rounds of this game. In each round you will see the payoff table and decide about your choice.
+    If you have understood the game and the rules please click NEXT to begin playing.</p>
+</div>
+</div>-->
+{% next_button %}
+{% endblock %}

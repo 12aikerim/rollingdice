@@ -6,9 +6,9 @@
 {% endblock %}
 
 {% block content %}
-{% if player.role == 'inspector' %}
+{% if player.role == 'Inspector' %}
     <div class="form-group required">
-        <p> Round # {{player.round_number}}</p>
+        <h5> Round # {{player.round_number}}</h5>
         <p> You are Inspector. Make your choice accordingly</p>
         <table class="table table-bordered text-center" style="width: auto; margin: auto">
             <tr>

@@ -1,0 +1,30 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Your Answers
+{% endblock %}
+
+{% block content %}
+
+    <ol>
+        <li>Will you hold the same role assigned to you at the beginning of the experiment throughout the game?</li>
+        <ul>
+        <li> Your answer: {{player.q1}}.</li>
+            <li>Correct answer: Yes</li>
+        </ul>
+        <li>Will your decisions affect the final payoff you will collect?</li>
+        <ul>
+        <li> Your answer: {{player.q2}}.</li>
+            <li>Correct answer: Yes</li>
+        </ul>
+        <li>Do payoffs of each game get selected randomly from each 20 rounds towards your final payoff?</li>
+        <ul>
+        <li> Your answer: {{player.q2}}.</li>
+            <li>Correct answer: Yes</li>
+        </ul>
+    </ol>
+    <p>Review answers before starting the game</p>
+
+    {% next_button %}
+{% endblock %}

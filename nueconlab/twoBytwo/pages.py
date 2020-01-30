@@ -3,10 +3,17 @@ from ._builtin import Page, WaitPage
 from .models import Constants, Group
 
 
-class game2_instructions(Page):
-    def is_displayed(self):
-        return self.round_number == 1
 
+class S3(Page) :
+    def is_displayed (self):
+        return self.round_number == 1
+    timeout_seconds = 180
+    form_model='player'
+    form_fields = ['q3_1_firm','q3_2_firm','q3_3_firm','q3_4_firm']
+
+class game1_1(Page):
+    def is_displayed (self):
+        return self.round_number == 1
     def vars_for_template(self):
         return dict(
             Revenue =60,
@@ -18,24 +25,23 @@ class game2_instructions(Page):
             fine =50,
             environment =50,
         )
+    timeout_seconds = 180
 
 
-
-
-class Decision2(Page):
+class Decision1(Page):
     form_model = 'player'
     form_fields = ['decision']
+
     def vars_for_template(self):
         return dict(
-            Revenue =60,
-            cost =40,
-            on_paper =10,
-            Budget =60,
-            expert =40,
-            intern =10,
-            fine =50,
+            Revenue=60,
+            cost=40,
+            on_paper=10,
+            Budget=60,
+            expert=40,
+            intern=10,
+            fine=50,
             environment=50,)
-
 
 class ResultsWaitPage(WaitPage):
     def after_all_players_arrive(self):
@@ -53,6 +59,7 @@ class WaitScreen(WaitPage):
 
 
 class Results(Page):
+
     def vars_for_template(self):
         me = self.player
         opponent = me.other_player()
@@ -60,16 +67,18 @@ class Results(Page):
         return dict(
             my_decision=me.decision,
             opponent_decision=opponent.decision,
+
         )
+
+    pass
+
 
 class FinalResults(Page):
     def is_displayed(self):
         return self.round_number == Constants.num_rounds
 
     def vars_for_template(self):
-        a=self.player.total_payoff()
-        return a
-
+        return self.player.total_payoff()
     pass
 
 
@@ -82,4 +91,4 @@ class RandomizePlayers(WaitPage):
     pass
 
 
-page_sequence = [game2_instructions,WaitScreen, Decision2, ResultsWaitPage,Results,RandomizePlayers,FinalResults,WaitScreen]
+page_sequence = [game1_1,WaitScreen,Decision1, ResultsWaitPage, Results,RandomizePlayers,FinalResults,WaitScreen]

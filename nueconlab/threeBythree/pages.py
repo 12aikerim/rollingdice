@@ -3,8 +3,8 @@ from ._builtin import Page, WaitPage
 from .models import Constants, Group
 
 
-class game2_instructions(Page):
-    def is_displayed(self):
+class game3_instructions(Page):
+    def is_displayed (self):
         return self.round_number == 1
 
     def vars_for_template(self):
@@ -18,9 +18,7 @@ class game2_instructions(Page):
             fine =50,
             environment =50,
         )
-
-
-
+    timeout_seconds = 180
 
 class Decision2(Page):
     form_model = 'player'
@@ -34,8 +32,8 @@ class Decision2(Page):
             expert =40,
             intern =10,
             fine =50,
-            environment=50,)
-
+            environment =50,
+        )
 
 class ResultsWaitPage(WaitPage):
     def after_all_players_arrive(self):
@@ -53,6 +51,7 @@ class WaitScreen(WaitPage):
 
 
 class Results(Page):
+
     def vars_for_template(self):
         me = self.player
         opponent = me.other_player()
@@ -60,16 +59,18 @@ class Results(Page):
         return dict(
             my_decision=me.decision,
             opponent_decision=opponent.decision,
+
         )
+
+    pass
+
 
 class FinalResults(Page):
     def is_displayed(self):
         return self.round_number == Constants.num_rounds
 
     def vars_for_template(self):
-        a=self.player.total_payoff()
-        return a
-
+        return self.player.total_payoff()
     pass
 
 
@@ -82,4 +83,4 @@ class RandomizePlayers(WaitPage):
     pass
 
 
-page_sequence = [game2_instructions,WaitScreen, Decision2, ResultsWaitPage,Results,RandomizePlayers,FinalResults,WaitScreen]
+page_sequence = [game3_instructions,WaitScreen, Decision2, ResultsWaitPage, Results,RandomizePlayers,FinalResults,WaitScreen]
