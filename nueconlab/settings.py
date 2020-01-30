@@ -43,7 +43,7 @@ ROOMS = [
     ),
     dict(name='live_demo', display_name='Room for live demo (no participant labels)'),
     dict(name='study1', display_name= 'Room for session 1 (Singapore)', participant_label_file='_rooms/studySG1.txt'),
-    dict(name='study2', display_name= 'Room for session 2 (Singapore)', participant_label_file='_rooms/studySG2her.txt')
+    dict(name='study2', display_name= 'Room for session 2 (Singapore)', participant_label_file='_rooms/studySG2.txt')
 ]
 
 ADMIN_USERNAME = 'admin'
