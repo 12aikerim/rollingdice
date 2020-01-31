@@ -7,7 +7,6 @@ class Introduction(Page):
         return self.round_number == 1
 
 
-
 class S2(Page):
     def is_displayed (self):
         return self.round_number == 1
