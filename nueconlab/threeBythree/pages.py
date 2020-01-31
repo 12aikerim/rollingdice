@@ -83,4 +83,4 @@ class RandomizePlayers(WaitPage):
     pass
 
 
-page_sequence = [game3_instructions,WaitScreen, Decision2, ResultsWaitPage, Results,RandomizePlayers,FinalResults,WaitScreen]
+page_sequence = [game3_instructions, Decision2, ResultsWaitPage, Results,FinalResults]

@@ -21,7 +21,6 @@ class game2_instructions(Page):
 
 
 
-
 class Decision2(Page):
     form_model = 'player'
     form_fields = ['decision']
@@ -73,13 +72,5 @@ class FinalResults(Page):
     pass
 
 
-class RandomizePlayers(WaitPage):
-    def is_displayed(self):
-        return self.round_number !=Constants.num_rounds
-    body_text = "Matching you with the new player..."
-    def wait_for_all_groups(self):
-        self.wait_for_all_groups = True
-    pass
 
-
-page_sequence = [game2_instructions,WaitScreen, Decision2, ResultsWaitPage,Results,RandomizePlayers,FinalResults,WaitScreen]
+page_sequence = [game2_instructions, Decision2, ResultsWaitPage,Results,FinalResults]

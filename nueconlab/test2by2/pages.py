@@ -43,12 +43,6 @@ class ResultsWaitPage(WaitPage):
     def wait_for_all_groups(self):
         self.wait_for_all_groups = True
 
-class WaitScreen(WaitPage):
-
-    def wait_for_all_groups(self):
-        self.wait_for_all_groups = True
-    pass
-
 
 class RandomizePlayers(WaitPage):
     def is_displayed(self):
@@ -83,5 +77,5 @@ class FinalResults(Page):
     pass
 
 
-page_sequence = [Introduction,WaitScreen,S2,WaitScreen,S3,Answers,WaitScreen,game1_instructions,WaitScreen,Decision1,
-                 ResultsWaitPage,Results,RandomizePlayers,FinalResults,]
+page_sequence = [Introduction,S2,S3,Answers,game1_instructions,Decision1,
+                 ResultsWaitPage,Results,FinalResults]

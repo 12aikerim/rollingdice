@@ -25,7 +25,7 @@ class game1_1(Page):
             fine =50,
             environment =50,
         )
-    timeout_seconds = 180
+
 
 
 class Decision1(Page):
@@ -91,4 +91,4 @@ class RandomizePlayers(WaitPage):
     pass
 
 
-page_sequence = [game1_1,WaitScreen,Decision1, ResultsWaitPage, Results,RandomizePlayers,FinalResults,WaitScreen]
+page_sequence = [game1_1,Decision1, ResultsWaitPage, Results,FinalResults]
