@@ -24,7 +24,7 @@ Test 2-by-2 inspector vs. firm game
 class Constants(BaseConstants):
     name_in_url = 'game1'
     players_per_group = 2
-    num_rounds = 30
+    num_rounds =30
     k = 3 #number of randomly selected rounds
 
     # constants with links to pages
@@ -91,7 +91,7 @@ class Player(BasePlayer):
     )
     q3 = models.StringField(
         choices=[['Yes', 'Yes'], ['No', 'No']],
-        label='Do payoffs of each game get selected randomly from each 20 rounds towards your final payoff?',
+        label='Do payoffs of each game get selected from each 30 rounds towards your final payoff?',
         widget=widgets.RadioSelect,
     )
 

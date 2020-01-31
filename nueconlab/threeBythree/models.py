@@ -87,7 +87,7 @@ class Player(BasePlayer):
 
     def set_payoff(self):
         x=c(np.random.choice([50,0],1,p=[0.1,0.9]).item(0))
-        y=c(np.random.choice([60,10],1,p=[0.1,0.9]).item(0))
+        y=c(np.random.choice([60,10],1,p=[0.5,0.5]).item(0))
         payoff_matrix = dict(
             Fully_Comply=dict(
                 Full_Inspection=Constants.firm_fully_comply,
