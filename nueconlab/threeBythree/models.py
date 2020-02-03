@@ -115,7 +115,7 @@ class Player(BasePlayer):
                 Not_Comply=c(50 if y ==c(10) else 0),
             ),
             No_Inspection=dict(
-                Fully_Comply=Constants.insp_NF,
+                Fully_Comply=Constants.insp_FN,
                 Partially_Comply=Constants.insp_PN,
                 Not_Comply=Constants.insp_NN,
             ),

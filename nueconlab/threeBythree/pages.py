@@ -39,8 +39,6 @@ class ResultsWaitPage(WaitPage):
     def after_all_players_arrive(self):
         self.group.set_payoffs()
 
-    def wait_for_all_groups(self):
-        self.wait_for_all_groups = True
     pass
 
 
@@ -78,9 +76,8 @@ class RandomizePlayers(WaitPage):
     def is_displayed(self):
         return self.round_number !=Constants.num_rounds
     body_text = "Matching you with the new player..."
-    def wait_for_all_groups(self):
-        self.wait_for_all_groups = True
+
     pass
 
 
-page_sequence = [game3_instructions, Decision2, ResultsWaitPage, Results,FinalResults]
+page_sequence = [game3_instructions, Decision2, ResultsWaitPage, Results,RandomizePlayers,FinalResults]
