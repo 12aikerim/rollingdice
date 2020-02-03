@@ -4,16 +4,16 @@ from . import pages
 from ._builtin import Bot
 from .models import Constants
 
-
+import random
+page_sequence = [Demographics, QuestionaireOnExperiment,FinalPageAfterSurvey]
 class PlayerBot(Bot):
     def play_round(self):
 
-        yield (pages.Demographics, {'age': 24, 'gender': 'Male'})
+        yield (pages.Demographics, {'age': 24, 'gender': 'Male','citizen':random('No','Yes'),'residence':1,'degree':True,'participation':1,'experience_econ':1,
+                'experience_game':1,'risk_tolerance':1,'inform_source':1,'problem':1 })
 
         yield (
-            pages.CognitiveReflectionTest,
-            {'crt_bat': 10, 'crt_widget': 5, 'crt_lake': 48},
+            pages.QuestionaireOnExperiment,
+            {'Q1':1,'Q2':2,'Q3':3,'Q4':4,'Q5':5,'Q6':5,'Q7':4,'Q8':3,'Q9':2,'Q10':1},
         )
-
-        for value in [self.player.crt_bat, self.player.payoff]:
-            assert value != None
+        yield pages.FinalPageAfterSurvey
