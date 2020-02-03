@@ -21,7 +21,7 @@ p = []
 class Constants(BaseConstants):
     name_in_url = 'game4'
     players_per_group = 2
-    num_rounds = 5
+    num_rounds = 30
     k = 3  # number of randomly selected rounds
 
     instructions_template = 'threeBythree/Instructions.html'

@@ -7,6 +7,7 @@ from .models import Constants
 from numpy import random
 
 class PlayerBot(Bot):
+
     def play_round(self):
 
         yield (pages.Demographics, {'age': 24, 'gender': 'Male','citizen':random.choice([False,True]),'residence':1,'degree':True,'participation':1,'experience_econ':1,
