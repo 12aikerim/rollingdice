@@ -2,16 +2,23 @@ from otree.api import Currency as c, currency_range
 from . import pages
 from ._builtin import Bot
 from .models import Constants
-import random
+from numpy import random
 
 class PlayerBot(Bot):
     def play_round(self):
-        yield pages.game3_instructions
-        if self.player.role == 'inspector':
-            yield pages.Decision2, dict(decision=random('Full_Inspection','Light_Inspection','No_Inspection'))
-        else:
-            yield pages.Decision2, dict(decision=random('Fully_Comply', 'Partially_Comply', 'Not_Comply'))
-        yield pages.Results
-        yield pages.FinalResults
+            if self.round_number == 1:
+                yield pages.game3_instructions
 
-        pass
+            if self.player.id_in_group == 1:
+                yield pages.Decision2, dict(
+                    decision=random.choice(['Full_Inspection', 'Light_Inspection', 'No_Inspection']))
+            else:
+                yield pages.Decision2, dict(decision=random.choice(['Fully_Comply', 'Partially_Comply', 'Not_Comply']))
+
+
+            yield pages.Results
+
+            if self.round_number == Constants.num_rounds:
+                yield pages.FinalResults
+
+    pass

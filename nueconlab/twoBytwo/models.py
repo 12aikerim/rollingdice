@@ -23,7 +23,7 @@ p = []  # type: list
 class Constants(BaseConstants):
     name_in_url = 'firm-vs-agency'
     players_per_group = 2
-    num_rounds = 30
+    num_rounds = 5
     k = 3  # number of randomly selected rounds
     Revenue = 60
     cost = 40

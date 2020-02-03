@@ -8,8 +8,6 @@ class S3(Page) :
     def is_displayed (self):
         return self.round_number == 1
     timeout_seconds = 180
-    form_model='player'
-    form_fields = ['q3_1_firm','q3_2_firm','q3_3_firm','q3_4_firm']
 
 class game1_1(Page):
     def is_displayed (self):
