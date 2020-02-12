@@ -3,7 +3,7 @@ from ._builtin import Page, WaitPage
 from .models import Constants, Group
 
 
-class game3_instructions(Page):
+class game4_instructions(Page):
     def is_displayed (self):
         return self.round_number == 1
 
@@ -20,9 +20,11 @@ class game3_instructions(Page):
         )
     timeout_seconds = 180
 
-class Decision2(Page):
+
+class Decision4(Page):
     form_model = 'player'
     form_fields = ['decision']
+
     def vars_for_template(self):
         return dict(
             Revenue =60,
@@ -60,6 +62,7 @@ class Results(Page):
 
         )
 
+    timeout_seconds = 30
     pass
 
 
@@ -80,4 +83,4 @@ class RandomizePlayers(WaitPage):
     pass
 
 
-page_sequence = [game3_instructions, Decision2, ResultsWaitPage, Results,RandomizePlayers,FinalResults]
+page_sequence = [game4_instructions, Decision4, ResultsWaitPage, Results,RandomizePlayers,FinalResults]

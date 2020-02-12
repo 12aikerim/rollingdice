@@ -3,50 +3,51 @@ from ._builtin import Page, WaitPage
 from .models import Constants, Group
 
 
-class game2_instructions(Page):
+class Greetings(Page):
+    def is_displayed (self):
+        return self.round_number == 1
+
+
+class Introduction(Page):
+    def is_displayed (self):
+        return self.round_number == 1
+
+
+class ValidationSurvey(Page) :
+    def is_displayed (self):
+        return self.round_number == 1
+
+    form_model = 'player'
+    form_fields = ['q1','q2','q3']
+
+
+class Answers(Page) :
     def is_displayed(self):
         return self.round_number == 1
 
-    def vars_for_template(self):
-        return dict(
-            Revenue =60,
-            cost =40,
-            on_paper =10,
-            Budget =60,
-            expert =40,
-            intern =10,
-            fine =50,
-            environment =50,
-        )
+
+class game1_instructions(Page):
+    def is_displayed (self):
+        return self.round_number == 1
 
 
-
-class Decision2(Page):
+class Decision1(Page):
     form_model = 'player'
     form_fields = ['decision']
-    def vars_for_template(self):
-        return dict(
-            Revenue =60,
-            cost =40,
-            on_paper =10,
-            Budget =60,
-            expert =40,
-            intern =10,
-            fine =50,
-            environment=50,)
-
 
 class ResultsWaitPage(WaitPage):
     def after_all_players_arrive(self):
         self.group.set_payoffs()
-    pass
+
 
 class RandomizePlayers(WaitPage):
     def is_displayed(self):
         return self.round_number!=Constants.num_rounds
     body_text = "Matching you with the new player..."
 
+
 class Results(Page):
+
     def vars_for_template(self):
         me = self.player
         opponent = me.other_player()
@@ -54,18 +55,27 @@ class Results(Page):
         return dict(
             my_decision=me.decision,
             opponent_decision=opponent.decision,
+
         )
-
-class FinalResults(Page):
-    def is_displayed(self):
-        return self.round_number == Constants.num_rounds
-
-    def vars_for_template(self):
-        a=self.player.total_payoff()
-        return a
+    timeout_seconds = 30
 
     pass
 
 
+class FinalResults(Page):
 
-page_sequence = [game2_instructions, Decision2, ResultsWaitPage,Results,RandomizePlayers,FinalResults]
+    def is_displayed(self):
+        return self.round_number == Constants.num_rounds
+
+    def before_next_page(self):
+        self.player.create_payment_list()
+
+    def vars_for_template(self):
+        return self.player.total_payoff()
+
+
+    pass
+
+
+page_sequence = [Greetings,Introduction,ValidationSurvey,Answers,game1_instructions,Decision1,
+                 ResultsWaitPage,Results,RandomizePlayers,FinalResults]

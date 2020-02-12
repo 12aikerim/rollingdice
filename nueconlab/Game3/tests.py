@@ -7,12 +7,12 @@ from numpy import random
 class PlayerBot(Bot):
     def play_round(self):
         if self.round_number ==1:
-            yield pages.game1_1
+            yield pages.game3_instructions
 
         if self.player.id_in_group == 1:
-            yield pages.Decision1, dict(decision=random.choice(['Inspect', 'Not_inspect']))
+            yield pages.Decision3, dict(decision=random.choice(['Inspect', 'Not_inspect']))
         else:
-            yield pages.Decision1, dict(decision=random.choice(['Comply', 'Not_comply']))
+            yield pages.Decision3, dict(decision=random.choice(['Comply', 'Not_comply']))
 
         yield pages.Results
         if self.round_number == Constants.num_rounds:

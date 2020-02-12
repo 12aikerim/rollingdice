@@ -9,9 +9,9 @@ class PlayerBot(Bot):
 
     def play_round(self):
         if self.round_number ==1:
+            yield pages.Greetings
             yield pages.Introduction
-            yield pages.S2
-            yield pages.S3, dict(q1="Yes", q2="Yes", q3="No")
+            yield pages.ValidationSurvey, dict(q1="Yes", q2="Yes", q3="No")
             yield pages.Answers
             yield pages.game1_instructions
 

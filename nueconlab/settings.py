@@ -6,8 +6,8 @@ from os import environ
 # e.g. self.session.config['participation_fee']
 
 SESSION_CONFIG_DEFAULTS = dict(
-    real_world_currency_per_point=0.05, participation_fee=5.00, doc="",
-    use_browser_bots=True,
+    real_world_currency_per_point=20, participation_fee=2000, doc="",
+    use_browser_bots=0,
 )
 
 
@@ -17,7 +17,7 @@ SESSION_CONFIGS = [
         name='inspection_game',
         display_name = '4 Games',
         num_demo_participants = 2,
-        app_sequence = ['test2by2', 'test3by3', 'twoBytwo', 'threeBythree','payment_info1','survey'],
+        app_sequence = ['Game1', 'Game2', 'Game3', 'Game4','payment_info1','survey'],
     ),
     dict(
         name='survey',
@@ -33,7 +33,7 @@ SESSION_CONFIGS = [
 LANGUAGE_CODE = 'en'
 
 # e.g. EUR, GBP, CNY, JPY
-REAL_WORLD_CURRENCY_CODE = 'SGD'
+REAL_WORLD_CURRENCY_CODE = 'KZT'
 USE_POINTS = True
 
 ROOMS = [
@@ -44,7 +44,8 @@ ROOMS = [
     ),
     dict(name='live_demo', display_name='Room for live demo (no participant labels)'),
     dict(name='study1', display_name= 'Room for session 1 (Singapore)', participant_label_file='_rooms/studySG1.txt'),
-    dict(name='study2', display_name= 'Room for session 2 (Singapore)', participant_label_file='_rooms/studySG2.txt')
+    dict(name='study2', display_name= 'Room for session 2 (Singapore)', participant_label_file='_rooms/studySG2.txt'),
+    dict(name='MPP2021', display_name= 'Room for trial session (MPP2021)', participant_label_file='_rooms/MPP2021.txt')
 ]
 
 ADMIN_USERNAME = 'admin'

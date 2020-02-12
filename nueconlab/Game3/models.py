@@ -33,11 +33,10 @@ class Constants(BaseConstants):
     intern = 10
     fine = 50
     environment = 50
+    index_list = sorted(random.sample(range(num_rounds), k))
+    print('indexes game3: ', index_list)
     # constants with links to pages
-    instructions_template = 'twoBytwo/Instructions.html'
-
-
-    survey ='twoBytwo/Screen3.html'
+    instructions_template = 'Game3/Instructions.html'
 
 
     # Player A points in Game one
@@ -118,20 +117,27 @@ class Player(BasePlayer):
 
 
     def total_payoff(self):
+        list_of_payments = [p.payoff for p in self.in_all_rounds()]
+        print('all payments: ', list_of_payments)
+        random_payoffs = [list_of_payments[p] for p in Constants.index_list]
+        print('randomly selected payoffs: ', random_payoffs)
+        selected_rounds = [p + 1 for p in Constants.index_list]
+        print('selected rounds: ', selected_rounds)
+        random_pay = dict(zip(selected_rounds, random_payoffs))
+        print('dictionary: ', random_pay)
 
-        listOfPayments = [p.payoff for p in self.in_all_rounds()]
-        temp = random.sample(listOfPayments, Constants.k)
-        total = sum(temp)
+        total = sum(random_payoffs)
         self.participant.vars['lump'].append(total)
         self.participant.payoff = sum(self.participant.vars['lump'])
 
         print("lump in game 3 is ",self.participant.vars['lump'])
 
         return dict(
-            list_of_all_payments=listOfPayments,
+            list_of_all_payments=list_of_payments,
             round_earning=total,
-            random_payments=temp, )
-
+            random_payments=random_pay,
+            round_number=selected_rounds,
+        )
 
     pass
 

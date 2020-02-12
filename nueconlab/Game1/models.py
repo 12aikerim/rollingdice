@@ -19,19 +19,19 @@ doc = """
 Test 2-by-2 inspector vs. firm game 
 """
 
-
-
 class Constants(BaseConstants):
     name_in_url = 'game1'
     players_per_group = 2
-    num_rounds =30
+    num_rounds = 30
     k = 3 #number of randomly selected rounds
+    index_list = sorted(random.sample(range(num_rounds), k))
+    print('indexes game1: ', index_list)
 
     # constants with links to pages
-    instructions_template = 'test2by2/Instructions.html'
-    intro_screen = 'test2by2/Screen1.html'
-    screen_2 = 'test2by2/Screen2.html'
-    screen_3 = 'test2by2/Screen3.html'
+    instructions_template = 'Game1/Instructions.html'
+    intro_screen = 'Game1/Screen1.html'
+    screen_2 = 'Game1/Screen2.html'
+    screen_3 = 'Game1/Screen3.html'
 
 
     #Player A points in Game one
@@ -60,8 +60,11 @@ class Constants(BaseConstants):
 
 
 class Subsession(BaseSubsession):
+
     def creating_session(self):
         self.group_randomly(fixed_id_in_group=True)
+
+
     pass
 
 
@@ -125,20 +128,37 @@ class Player(BasePlayer):
         )
         self.payoff = payoff_matrix[self.decision][self.other_player().decision]
 
+    def create_payment_list(self):
+       return self.participant.vars['lump']
+       pass
+
     def total_payoff(self):
 
-        listOfPayments = [p.payoff for p in self.in_all_rounds()]
-        temp = random.sample(listOfPayments, Constants.k)
+        list_of_payments = [p.payoff for p in self.in_all_rounds()]
+        print('all payments: ', list_of_payments)
 
-        total=sum(temp)
+        random_payoffs =[list_of_payments[p] for p in Constants.index_list]
+
+        print('randomly selected payoffs: ', random_payoffs)
+        selected_rounds = [p + 1 for p in Constants.index_list]
+
+        print('selected rounds: ',selected_rounds)
+        random_pay =dict(zip(selected_rounds, random_payoffs))
+        print('dictionary: ', random_pay)
+
+        total=sum(random_payoffs)
         self.participant.payoff = total
-        self.participant.vars['lump'] =[total]
+        self.participant.vars['lump']=[total]
         print(self.participant.vars['lump'])
 
+
         return dict(
-            list_of_all_payments=listOfPayments,
+            list_of_all_payments=list_of_payments,
             round_earning=total,
-            random_payments=temp, )
+            random_payments=random_pay,
+            round_number=selected_rounds,
+        )
+
 
     pass
 
