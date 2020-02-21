@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <div class="w3-sidebar w3-bar-block" style="width:30%;right:0">
     <h4 class="w3-bar-item text-center">Info panel</h4>
   <table class="table table-bordered text-center" style="width: auto;right:0">
@@ -32,7 +32,7 @@
           <td></td>
       </tr>
   </table>
-</div>
+</div>-->
 {% if player.role == 'firm' %}
     <div class="form-group required">
         <p> Round # {{player.round_number}}</p>
@@ -44,6 +44,7 @@
         <td><button name="decision" value="Partially_Comply" class="btn btn-primary btn-large">COMPLIANCE ON PAPER</button>
         <td><button name="decision" value="Not_Comply" class="btn btn-primary btn-large">NO COMPLIANCE</button></td>
         </tr>
+               {% include Constants.instructions_template %}
         <!--<tr>
             <td>DETAILED INSPECTION</td>
             <td>{{Constants.firm_fully_comply}}</td>
@@ -106,6 +107,7 @@
             <td ><button name="decision" value="Light_Inspection" class="btn btn-primary btn-large">QUICK INSPECTION</button></td>
             <td ><button name="decision" value="No_Inspection" class="btn btn-primary btn-large">NO INSPECTION</button></td>
         </tr>
+               {% include Constants.instructions_template %}
             <!--<tr>
             <td>FULL COMPLIANCE</td>
             <td>{{Constants.insp_FI}}</td>

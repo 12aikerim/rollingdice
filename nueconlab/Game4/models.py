@@ -21,10 +21,18 @@ p = []
 class Constants(BaseConstants):
     name_in_url = 'game4'
     players_per_group = 2
-    num_rounds = 30
+    num_rounds = 4
     k = 3  # number of randomly selected rounds
     index_list = sorted(rand.sample(range(num_rounds), k))
     print('indexes game4: ', index_list)
+    Revenue = 60
+    cost = 40
+    on_paper = 10
+    Budget = 60
+    expert = 40
+    intern = 10
+    fine = 50
+    environment = 50
 
     instructions_template = 'Game4/Instructions.html'
 
@@ -140,6 +148,7 @@ class Player(BasePlayer):
 
         total = sum(random_payoffs)
         self.participant.vars['lump'].append(total)
+        print("accumulated payoffs in game4: ", self.participant.vars['lump'])
         self.participant.payoff = sum(self.participant.vars['lump'])
 
         return dict(

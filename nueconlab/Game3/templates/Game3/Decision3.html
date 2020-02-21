@@ -6,8 +6,7 @@
 {% endblock %}
 
 {% block content %}
-
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <div class="w3-sidebar w3-bar-block" style="width:30%;right:0">
     <h4 class="w3-bar-item text-center">Info panel</h4>
   <table class="table table-bordered text-center" style="width: auto;right:0">
@@ -32,97 +31,50 @@
 </div>
 
 <div style="margin-right:25%">
-
+-->
 {% if player.role == 'firm' %}
     <div class="form-group required">
         <h5> Round # {{player.round_number}}</h5>
         <p> You are a Firm. You start with {{Revenue|c}}. Make your choice accordingly</p>
-        <table class="table " style="width: auto;">
+        {% include Constants.instructions_template %}
+      <table class="table " style="width: auto;">
 
         <tr>
-                <td>  </td>
+            <td>  </td>
             <td><button name="decision" value="Comply" class="btn btn-primary btn-large">COMPLY</button></td>
         <td><button name="decision" value="Not_comply" class="btn btn-primary btn-large">NOT COMPLY</button></td></tr>
-            <!--<tr>
+           <!-- <tr>
                 <td>INSPECT</td>
                 <td>{{Constants.ul}}</td>
                 <td>{{Constants.dl}}</td></tr>
             <tr>
                 <td>NOT INSPECT</td>
                 <td>{{Constants.ur}}</td>
-                <td>{{Constants.dr}}</td>-->
-            </tr>
-
-
+                <td>{{Constants.dr}}</td>
+            </tr>-->
         </table>
-
-       <!-- <table class="table table-bordered text-center" style="width: auto; margin: auto">
-            <tr>
-                <th colspan="2" rowspan="2"></th>
-                <th colspan="2">Agency</th>
-            </tr>
-            <tr>
-                <th>INSPECT</th>
-                <th>NOT INSPECT</th>
-            </tr>
-            <tr>
-                <th rowspan="2"><span>You</span></th>
-                <td><button name="decision" value="Comply" class="btn btn-primary btn-large">COMPLY</button></td>
-                <td>{{ Constants.ul}}, {{ Constants.lu}}</td>
-                <td>{{ Constants.ur}}, {{ Constants.ru }}</td>
-            </tr>
-            <tr>
-                <td><button name="decision" value="Not_comply" class="btn btn-primary btn-large">NOT COMPLY</button></td>
-                <td>{{ Constants.dl }},{{Constants.ld}}</td>
-                <td>{{ Constants.dr}}, {{ Constants.rd}}</td>
-            </tr>
-        </table>-->
 
     </div>
 {% else %}
 <div class="form-group required">
         <h5> Round # {{player.round_number}}</h5>
         <p> You are the environmental regulation agency.You start with {{Budget|c}}. Make your choice accordingly</p>
-        <table class="table " style="width: auto;">
+    {% include Constants.instructions_template %}
+      <table class="table " style="width: auto;">
 
         <tr><td> </td>
             <td><button name="decision" value="Inspect" class="btn btn-primary btn-large">INSPECT</button></td>
         <td><button name="decision" value="Not_inspect" class="btn btn-primary btn-large">NOT INSPECT</button></tr>
-            <!--<tr>
+           <!-- <tr>
                 <td>COMPLY</td>
                 <td>{{Constants.lu}}</td>
                 <td>{{Constants.ru}}</td></tr>
             <tr>
                 <td>NOT COMPLY</td>
                 <td>{{Constants.ld}}</td>
-                <td>{{Constants.rd}}</td>-->
-            </tr>
+                <td>{{Constants.rd}}</td>
+            </tr>-->
         </table>
-<!--<div class="form-group required">
-     <p> Round # {{player.round_number}}</p>
-    <p> You are an Agency. Make your choice accordingly</p>
-        <table class="table table-bordered text-center" style="width: auto; margin: auto">
-            <tr>
-                <th colspan="4"><span>You</span></th> </tr>
-            <tr>
-                <th> </th>
-                <th> </th>
-            <td colspan=><button name="decision" value="Inspect" class="btn btn-primary btn-large">INSPECT</button></td>
-                <td colspan=><button name="decision" value="Not_inspect" class="btn btn-primary btn-large">NOT INSPECT</button></td>
-            </tr>
-            <tr> <th rowspan="2">Firm</th>
-                <th>COMPLY</th>
-                <td >{{ Constants.ul}}, {{ Constants.lu}}</td>
-                <td>{{ Constants.ur}}, {{ Constants.ru }}</td>
-            </tr>
-
-            <tr>
-                <th>NOT COMPLY</th>
-                <td>{{ Constants.dl }},{{Constants.ld}}</td>
-                <td>{{ Constants.dr}}, {{ Constants.rd}}</td>
-            </tr>
-        </table>-->
-    </div>
     </div>
 {% endif %}
 {{ form.decision.errors }}

@@ -4,11 +4,7 @@
 {%block title%}
 Game Three
 {% endblock %}
-
-
 {% block content %}
-<div class="card bg-light instructions">
-    <div class="card-body">
 <head>
     <style>
         ul {  margin: 0;}
@@ -19,19 +15,21 @@ Game Three
         </style>
 </head>
 
+<div class="card bg-light instructions">
+    <div class="card-body">
     <link rel="stylesheet" type="text/css"
           href="{% static 'global/matrix.css' %}"/>
 {% if player.role == 'firm'%}
 
     <p>
         In this game you are assigned the role of a Firm. In each round, you will start with {{Revenue|c}}. You will be paired with another
-        player who is assigned the role of the environmental regulation agency. You have two options:
+        player who is assigned the role of the environmental regulation agency. You have two options: </p>
         <ol>
         <li>COMPLY with the environmental regulations</li>
         or
         <li>NOT COMPLY with the environmental regulations.</li>
     </ol>
-        The agency will aslo decide between two options: to INSPECT or NOT INSPECT.
+      <p>  The agency will aslo decide between two options: to INSPECT or NOT INSPECT.
     </p>
         <ul>
             <li>If you decide to COMPLY, the cost is {{cost|c}}. So, your final score in this round will be {{Constants.ul}}</li>
@@ -58,10 +56,11 @@ Game Three
         it will cost you {{environment|c}} due to environmental damage. To INSPECT, you will pay {{expert|c}}, as cost of inspection.
         If you decide to INSPECT and the Firm is NOT COMPLYING, you will collect {{Constants.ld}} from the Firm.
         <p> For your information, the Firm also starts with {{Revenue|c}}, and the cost of compliance paid by the Firm is {{cost|c}} for them. </p>
-        The player (Firm) you will be paired will change randomly from round to round. You will not be able to see the other player's choice before you submit your decision.
+        <p>The player (Firm) you will be paired will change randomly from round to round. You will not be able to see the other player's choice before you submit your decision.
         The Firm will not be able to see your decision unless submitting his/her decision. The points you earn in a round will depend on the decisions made by you and the person you are paired
-        with in that round.
-    </p>
+            with in that round.</p>
+    </div>
+    </div>
 
  {% endif %}
  {% next_button %}

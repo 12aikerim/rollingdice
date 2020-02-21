@@ -64,6 +64,7 @@ class FinalResults(Page):
         return self.round_number == Constants.num_rounds
 
     def vars_for_template(self):
+
         a=self.player.total_payoff()
         return a
 

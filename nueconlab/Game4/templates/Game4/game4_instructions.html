@@ -41,7 +41,7 @@ will be matched with will determine your earnings. In each round you will start 
         <li>If you decide to conduct QUICK INSPECTION and Firm decides to NOT COMPLY, you will catch them 50% of the time.</li>
             <li> If you choose DETAILED INSPECTION and Firm chooses COMPLIANCE ON PAPERS, the Firm will be caught 90% of the time. </li>
         <li>If you choose QUICK INSPECTION and Firm chooses COMPLIANCE ON PAPERS, the Firm will not be caught.</li>
-        </ul> </p>
+        </ul>
 {% else %}
      <p>
         In this game you will keep the role of the Firm as you had in Game Three. Again,
@@ -54,19 +54,20 @@ will be matched with will determine your earnings. In each round you will start 
     </p>
         <p>
             You can now choose between two types of compliance to environmental regulations:
+        </p>
             <ul>
         <li>COMPLIANCE ON PAPERS, which will cost you {{on_paper|c}}. It reduces the probability of being penalized by Agency to 90%, but it
         does not prevent environmental damage.</li>
         <li>FULL COMPLIANCE, which will cost you {{cost|c}}. It reduces the probability of being penalized by Agency to 0%. </li>
             </ul>
-        The new alternative for the Agency is that now they can decide what kind of inspector to hire for the inspection. They can choose
+       <p>The new alternative for the Agency is that now they can decide what kind of inspector to hire for the inspection. They can choose
         between expert (DETAILED INSPECTION) and inexperienced inspectors (QUICK INSPECTION), that will cost them {{expert|c}} and {{intern|c}} respectively. </p>
-    <p>The probability of the fine depends on the Firm and Inspectors mutual choices:</p>
+    The probability of the fine depends on the Firm and Inspectors mutual choices:</p>
          <ul>
-        <li> If you decide to NOT COMPLY and The Agency chooses DETAILED INSPECTION, the you will be caught.</li>
+        <li> If you decide to NOT COMPLY and The Agency chooses DETAILED INSPECTION, the you will be caught.The fine is {{Constants.fine|c}}</li>
         <li>If you decide to NOT COMPLY and The Agency chooses QUICK INSPECTION, the you will be caught 50% of the time.</li>
-        <li> If you decide COMPLIANCE ON PAPERS and The Agency chooses DETAILED INSPECTION, the you will be caught 90% of the time. </li>
-        <li>If you decide COMPLIANCE ON PAPERS and The Agency chooses QUICK INSPECTION, the you will not be caught.</li>
+        <li> If you choose COMPLIANCE ON PAPERS and The Agency chooses DETAILED INSPECTION, the you will be caught 90% of the time. </li>
+        <li>If you choose COMPLIANCE ON PAPERS and The Agency chooses QUICK INSPECTION, the you will not be caught.</li>
          </ul>
 {% endif %}
     <!--    <p>You will collect the points according to the table below:</p>

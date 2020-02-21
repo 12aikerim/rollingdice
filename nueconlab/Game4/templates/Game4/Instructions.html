@@ -6,42 +6,26 @@
 <h5> Payoff information </h5>
     <link rel="stylesheet" type="text/css"
           href="{% static 'global/matrix.css' %}"/>
+         {% if player.role == 'firm'%}
+      <p><ul>
+        <li> If you decide to NOT COMPLY and The Agency chooses DETAILED INSPECTION, the you will be caught.The fine is {{Constants.fine|c}}</li>
+        <li>If you decide to NOT COMPLY and The Agency chooses QUICK INSPECTION, the you will be caught 50% of the time.</li>
+        <li> If you choose COMPLIANCE ON PAPERS which costs {{Constants.on_paper|c}} and The Agency chooses DETAILED INSPECTION, the you will be caught 90% of the time. </li>
+        <li>If you choose COMPLIANCE ON PAPERS and The Agency chooses QUICK INSPECTION, the you will not be caught.</li>
+        </ul>
+        </p>
 
-   <!-- <p>In each cell the number on the left indicates points for Player A and the number on the right
-            indicates points for Player B.</p>
 
-    <table class='table table-bordered text-center'
-           style='width: auto; margin: auto'>
-        <tr>
-            <th colspan=2 rowspan=2></th>
-            <th colspan=3>Player B</th>
-        </tr>
-        <tr>
-            <th>LEFT</th>
-            <th>CENTER</th>
-            <th>RIGHT</th>
-        </tr>
-        <tr>
-            <th rowspan=3>Player A</th>
-            <th>UP</th>
-            <td>{{ Constants.firm_fully_comply}}, {{ Constants.insp_FI}}</td>
-            <td>{{ Constants.firm_fully_comply}}, {{ Constants.insp_FL }}</td>
-            <td>{{ Constants.firm_fully_comply}}, {{ Constants.insp_FN }}</td>
-        </tr>
-        <tr>
-            <th>MIDDLE</th>
-            <td>{{ Constants.firm_PF}}, {{ Constants.insp_PF}}</td>
-            <td>{{ Constants.firm_PL}}, {{ Constants.insp_PL }}</td>
-            <td>{{ Constants.firm_PN}}, {{ Constants.insp_PN }}</td>
-        </tr>
-        <tr>
-            <th>DOWN</th>
-            <td>{{ Constants.firm_NF}}, {{ Constants.insp_NF}}</td>
-            <td>{{ Constants.firm_NL}}, {{ Constants.insp_NL }}</td>
-            <td>{{ Constants.firm_NN}}, {{ Constants.insp_NN}}</td>
-        </tr>
-    </table>
--->
+{%else%}
+        <ul>
+            <li> If you decide to conduct DETAILED INSPECTION which will cost you {{Constants.expert|c}} and Firm decides to NOT COMPLY, the Firm will be caught and pay fine of {{Constants.fine|c}}.</li>
+            <li>If you decide to conduct QUICK INSPECTION which will cost you {{Constants.intern|c}}and Firm decides to NOT COMPLY, you will catch them 50% of the time.</li>
+            <li> If you choose DETAILED INSPECTION and Firm chooses COMPLIANCE ON PAPERS, the Firm will be caught 90% of the time. </li>
+            <li>If you choose QUICK INSPECTION and Firm chooses COMPLIANCE ON PAPERS, the Firm will not be caught.</li>
+        </ul>
+
+
+ {%endif%}
 </div>
 </div>
 

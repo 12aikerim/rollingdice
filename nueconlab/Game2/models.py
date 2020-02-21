@@ -23,7 +23,7 @@ p = []
 class Constants(BaseConstants):
     name_in_url = 'game2'
     players_per_group = 2
-    num_rounds = 30
+    num_rounds = 4
     k = 3  # number of randomly selected rounds
     index_list = sorted(random.sample(range(num_rounds), k))
     print('indexes game2: ', index_list)
@@ -32,12 +32,12 @@ class Constants(BaseConstants):
     # firm's points
     firm_fully_comply = c(20)  # fully comply (payoff is the same when inspection is full, light or there is not inspection at all
 
-    firm_PF = c(5)  # paritally comply when fully inspected
+    firm_PF = c(np.random.choice([50, 0], 1, p=[0.1, 0.9]).item(0))  # paritally comply when fully inspected
     firm_PL = c(50) # partially comply when lightly inspected
     firm_PN = c(50) # partially comply when not inspected
 
     firm_NF = c(10)  # not comply when fully inspected
-    firm_NL = c(35)  # not comply when lightly inspected
+    firm_NL = c(np.random.choice([60, 10], 1, p=[0.5, 0.5]).item(0))  # not comply when lightly inspected
     firm_NN = c(60)  # not comply when not inspected
 
     # inspector's points
@@ -45,12 +45,12 @@ class Constants(BaseConstants):
     insp_FL = c(50)  # light inspection when fully comply
     insp_FN = c(60)  # not inspect when when fully comply
 
-    insp_PF = c(15)  # full inspection when paritally comply
+    insp_PF = c(-30 if firm_PF==c(50) else 20)  # full inspection when paritally comply
     insp_PL = c(0)  # light inspection when paritally comply
     insp_PN = c(10)  # not inspect when paritally comply
 
     insp_NF = c(20)  # full inspection when not comply
-    insp_NL = c(25)  # light inspection when not comply
+    insp_NL = c(0 if firm_NL==c(60) else 50)  # light inspection when not comply
     insp_NN = c(10)  # not inspect when not comply
 
 
@@ -86,8 +86,7 @@ class Player(BasePlayer):
         return self.get_others_in_group()[0]
 
     def set_payoff(self):
-        x = np.random.choice([50, 0], 1, p=[0.1, 0.9]).item(0)
-        y = np.random.choice([60, 10], 1, p=[0.5, 0.5]).item(0)
+
         payoff_matrix = dict(
             Fully_Comply=dict(
                 Full_Inspection=Constants.firm_fully_comply,
@@ -95,24 +94,24 @@ class Player(BasePlayer):
                 No_Inspection=Constants.firm_fully_comply,
             ),
             Partially_Comply=dict(
-                Full_Inspection=c(x),
+                Full_Inspection=Constants.firm_PF,
                 Light_Inspection=Constants.firm_PL,
                 No_Inspection=Constants.firm_PN,
             ),
             Not_Comply=dict(
                 Full_Inspection=Constants.firm_NF,
-                Light_Inspection=c(y),
+                Light_Inspection=Constants.firm_NL,
                 No_Inspection=Constants.firm_NN,
             ),
             Full_Inspection=dict(
                 Fully_Comply=Constants.insp_FI,
-                Partially_Comply=c(-30 if x==50 else 20),
+                Partially_Comply=Constants.insp_PF,
                 Not_Comply=Constants.insp_NF,
             ),
             Light_Inspection=dict(
                 Fully_Comply=Constants.insp_FL,
                 Partially_Comply=Constants.insp_PL,
-                Not_Comply= c(50 if y==10 else 0),
+                Not_Comply= Constants.insp_NL,
             ),
             No_Inspection=dict(
                 Fully_Comply=Constants.insp_FN,
@@ -120,13 +119,10 @@ class Player(BasePlayer):
                 Not_Comply=Constants.insp_NN,
             ),
         )
+
         self.payoff = payoff_matrix[self.decision][self.other_player().decision]
 
-
-
     def total_payoff(self):
-
-
         list_of_payments = [p.payoff for p in self.in_all_rounds()]
         print('all payments: ', list_of_payments)
         random_payoffs = [list_of_payments[p] for p in Constants.index_list]
@@ -138,6 +134,7 @@ class Player(BasePlayer):
 
         total = sum(random_payoffs)
         self.participant.vars['lump'].append(total)
+        print("accumulated payoffs in game 2: ",self.participant.vars['lump'])
         self.participant.payoff = sum(self.participant.vars['lump'])
 
         return dict(

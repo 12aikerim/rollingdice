@@ -22,7 +22,7 @@ Test 2-by-2 inspector vs. firm game
 class Constants(BaseConstants):
     name_in_url = 'game1'
     players_per_group = 2
-    num_rounds = 30
+    num_rounds = 4
     k = 3 #number of randomly selected rounds
     index_list = sorted(random.sample(range(num_rounds), k))
     print('indexes game1: ', index_list)
@@ -75,6 +75,7 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+
 
     def role(self):
         if self.id_in_group == 1:
@@ -129,8 +130,9 @@ class Player(BasePlayer):
         self.payoff = payoff_matrix[self.decision][self.other_player().decision]
 
     def create_payment_list(self):
-       return self.participant.vars['lump']
-       pass
+        self.participant.vars['lump'] = []
+        return self.participant.vars['lump']
+    pass
 
     def total_payoff(self):
 
@@ -149,7 +151,7 @@ class Player(BasePlayer):
         total=sum(random_payoffs)
         self.participant.payoff = total
         self.participant.vars['lump']=[total]
-        print(self.participant.vars['lump'])
+        print("accumulated payoff in game 1: ", self.participant.vars['lump'])
 
 
         return dict(

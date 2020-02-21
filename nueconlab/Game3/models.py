@@ -23,7 +23,7 @@ Test 2-by-2 inspector vs. firm game
 class Constants(BaseConstants):
     name_in_url = 'firm-vs-agency'
     players_per_group = 2
-    num_rounds = 30
+    num_rounds = 4
     k = 3  # number of randomly selected rounds
     Revenue = 60
     cost = 40
@@ -84,7 +84,6 @@ class Player(BasePlayer):
         else:
             return 'firm'
 
-
     decision = models.StringField(
         choices=['Inspect', 'Comply','Not_inspect', 'Not_comply'],
         doc="""This player's decision""",
@@ -128,9 +127,9 @@ class Player(BasePlayer):
 
         total = sum(random_payoffs)
         self.participant.vars['lump'].append(total)
+        print("accumulated payoffs in game3: ", self.participant.vars['lump'])
         self.participant.payoff = sum(self.participant.vars['lump'])
 
-        print("lump in game 3 is ",self.participant.vars['lump'])
 
         return dict(
             list_of_all_payments=list_of_payments,

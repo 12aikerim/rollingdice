@@ -9,7 +9,10 @@
 {% if player.role == 'firm' %}
     <div class="form-group required">
         <h5> Round # {{player.round_number}}</h5>
-        <p> You are Player A. Make your choice accordingly</p>
+        <p> You are Player A. Make your choice accordingly.</p>
+        <p>In each cell the number on the left indicates points for YOU and the number on the right
+            indicates points for Player B.</p>
+        <p>For example, upper right cell indicates {{Constants.ur|c}} for YOU and {{Constants.ru|c}} for Player B.</p>
         <table class="table table-bordered text-center" style="width: auto; margin: auto">
             <tr>
                 <th colspan="2" rowspan="2"></th>
@@ -36,7 +39,10 @@
 {% else %}
 <div class="form-group required">
      <p> Round # {{player.round_number}}</p>
-    <p> You are Player B. Make your choice accordingly</p>
+    <p> You are Player B. Make your choice accordingly.</p>
+    <p>In each cell the number on the left indicates points for Player A and the number on the right
+            indicates points for YOU.</p>
+        <p>For example, upper right cell indicates {{Constants.ur|c}} for Player A and {{Constants.ru|c}} for YOU.</p>
         <table class="table table-bordered text-center" style="width: auto; margin: auto">
             <tr>
                 <th colspan="4"><span>You</span></th> </tr>
