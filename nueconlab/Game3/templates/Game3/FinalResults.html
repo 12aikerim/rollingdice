@@ -6,12 +6,13 @@
 {% endblock %}
 
 {% block content %}
-     <p>
-        Your total payoff is selected randomly from the results of {{Constants.num_rounds}} rounds. In previous rounds you earned:</p>
-
+<p>
+        Your total payoff is selected randomly from the results of {{Constants.num_rounds}} rounds. The results of the first 5 rounds are not included in random selection.
+        In previous rounds you earned:</p>
         <ol>
         {% for i in list_of_all_payments %}
-          <li>{{i|c}}</li>
+          <li>{{i|c}}{% if forloop.counter < 6 %}
+          *TRIAL ROUND* {%else%}{%endif%}</li>
         {% endfor %}
         </ol>
 

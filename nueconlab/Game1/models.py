@@ -22,9 +22,9 @@ Test 2-by-2 inspector vs. firm game
 class Constants(BaseConstants):
     name_in_url = 'game1'
     players_per_group = 2
-    num_rounds = 4
+    num_rounds = 10
     k = 3 #number of randomly selected rounds
-    index_list = sorted(random.sample(range(num_rounds), k))
+    index_list = sorted(random.sample(range(5,num_rounds), k))
     print('indexes game1: ', index_list)
 
     # constants with links to pages
@@ -72,10 +72,9 @@ class Group(BaseGroup):
     def set_payoffs(self):
         for p in self.get_players():
             p.set_payoff()
-
+    pass
 
 class Player(BasePlayer):
-
 
     def role(self):
         if self.id_in_group == 1:

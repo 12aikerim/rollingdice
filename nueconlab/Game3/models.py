@@ -19,11 +19,10 @@ doc = """
 Test 2-by-2 inspector vs. firm game 
 """
 
-
 class Constants(BaseConstants):
-    name_in_url = 'firm-vs-agency'
+    name_in_url = 'game3'
     players_per_group = 2
-    num_rounds = 4
+    num_rounds = 10
     k = 3  # number of randomly selected rounds
     Revenue = 60
     cost = 40
@@ -33,7 +32,7 @@ class Constants(BaseConstants):
     intern = 10
     fine = 50
     environment = 50
-    index_list = sorted(random.sample(range(num_rounds), k))
+    index_list = sorted(random.sample(range(5,num_rounds), k))
     print('indexes game3: ', index_list)
     # constants with links to pages
     instructions_template = 'Game3/Instructions.html'
@@ -74,10 +73,10 @@ class Group(BaseGroup):
     def set_payoffs(self):
         for p in self.get_players():
             p.set_payoff()
-
     pass
 
 class Player(BasePlayer):
+
     def role(self):
         if self.id_in_group == 1:
             return 'inspector'

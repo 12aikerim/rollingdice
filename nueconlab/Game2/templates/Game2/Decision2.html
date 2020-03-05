@@ -8,7 +8,9 @@
 {% block content %}
 {% if player.role == 'firm' %}
 <div class="form-group required">
-     <p> Round # {{player.round_number}}</p>
+     <h5> Round # {{player.round_number}}</h5>
+    {% if player.round_number < 6 %}
+    <h6> *TRIAL ROUND*</h6>{%else%}{%endif%}
     <p> You are Player A. Make your choice accordingly.</p>
     <p>In each cell the number on the left indicates points for YOU and the number on the right
             indicates points for Player B.</p>
@@ -33,32 +35,25 @@
                  <td>{{ Constants.firm_fully_comply}}, {{ Constants.insp_FN }}</td>
             </tr>
             <tr>
-                <td rowspan="2"><button name="decision" value="Partially_Comply" class="btn btn-primary btn-large">MIDDLE</button></td>
-                <td>50 points, -30 points (10 % prob.)</td>
+                <td ><button name="decision" value="Partially_Comply" class="btn btn-primary btn-large">MIDDLE</button></td>
+                <td>50 points, -30 points (10 % prob.) <p> </p>0 points, 20 points (90 % prob.)</td>
             <td>{{ Constants.firm_PL}}, {{ Constants.insp_PL }}</td>
             <td>{{ Constants.firm_PN}}, {{ Constants.insp_PN }}</td>
             </tr>
             <tr>
-             <td>0 points, 20 points (90 % prob.)</td>
-            <td> </td>
-            <td>   </td>
-        </tr>
-            <tr>
-                <td rowspan="2"><button name="decision" value="Not_Comply" class="btn btn-primary btn-large">DOWN</button></td>
+                <td ><button name="decision" value="Not_Comply" class="btn btn-primary btn-large">DOWN</button></td>
                 <td>{{ Constants.firm_NF}}, {{ Constants.insp_NF}}</td>
-            <td>60 points, 0 points (50% prob.)</td>
+            <td>60 points, 0 points (50% prob.) <p> </p>10 points, 50 points (50% prob.)</td>
             <td>{{ Constants.firm_NN}}, {{ Constants.insp_NN}}</td>
         </tr>
-        <tr>
-            <td></td>
-            <td>10 points, 50 points (50% prob.)</td>
-            <td></td>
-        </tr>
+
         </table>
 </div>
 {% else %}
 <div class="form-group required">
      <p> Round # {{player.round_number}}</p>
+    {% if player.round_number < 6 %}
+    <h6> *TRIAL ROUND*</h6>{%else%}{%endif%}
     <p> You are Player B. Make your choice accordingly.</p>
     <p>In each cell the number on the left indicates points for Player A and the number on the right
             indicates points for YOU.</p>
@@ -82,26 +77,16 @@
             </tr>
 
             <tr>
-                <th rowspan="2">MIDDLE</th>
-                <td>50 points, -30 points (10 % prob.)</td>
+                <th >MIDDLE</th>
+                <td>50 points, -30 points (10 % prob.) <p> </p>0 points, 20 points (90 % prob.</td>
             <td>{{ Constants.firm_PL}}, {{ Constants.insp_PL }}</td>
             <td>{{ Constants.firm_PN}}, {{ Constants.insp_PN }}</td>
         </tr>
-        <tr>
-             <td>0 points, 20 points (90 % prob.)</td>
-            <td> </td>
-            <td>   </td>
-        </tr>
             <tr>
-                <th rowspan="2">DOWN</th>
+                <th r>DOWN</th>
                 <td>{{ Constants.firm_NF}}, {{ Constants.insp_NF}}</td>
-            <td>60 points, 0 points (50% prob.)</td>
+            <td>60 points, 0 points (50% prob.) <p> </p>10 points, 50 points (50% prob.)</td>
             <td>{{ Constants.firm_NN}}, {{ Constants.insp_NN}}</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>10 points, 50 points (50% prob.)</td>
-            <td></td>
         </tr>
         </table>
     </div>

@@ -35,6 +35,8 @@
 {% if player.role == 'firm' %}
     <div class="form-group required">
         <h5> Round # {{player.round_number}}</h5>
+        {% if player.round_number < 6 %}
+        <h6> *TRIAL ROUND*</h6>{%else%}{%endif%}
         <p> You are a Firm. You start with {{Revenue|c}}. Make your choice accordingly</p>
         {% include Constants.instructions_template %}
       <table class="table " style="width: auto;">
@@ -58,6 +60,8 @@
 {% else %}
 <div class="form-group required">
         <h5> Round # {{player.round_number}}</h5>
+        {% if player.round_number < 6 %}
+        <h6> *TRIAL ROUND*</h6>{%else%}{%endif%}
         <p> You are the environmental regulation agency.You start with {{Budget|c}}. Make your choice accordingly</p>
     {% include Constants.instructions_template %}
       <table class="table " style="width: auto;">

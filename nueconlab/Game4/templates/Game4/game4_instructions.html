@@ -42,6 +42,9 @@ will be matched with will determine your earnings. In each round you will start 
             <li> If you choose DETAILED INSPECTION and Firm chooses COMPLIANCE ON PAPERS, the Firm will be caught 90% of the time. </li>
         <li>If you choose QUICK INSPECTION and Firm chooses COMPLIANCE ON PAPERS, the Firm will not be caught.</li>
         </ul>
+        <p>
+            You will now play 5 trial and {{Constants.num_rounds}} real rounds of this game.If you have understood the game and the rules please click NEXT to begin playing.
+        </p>
 {% else %}
      <p>
         In this game you will keep the role of the Firm as you had in Game Three. Again,
@@ -69,6 +72,9 @@ will be matched with will determine your earnings. In each round you will start 
         <li> If you choose COMPLIANCE ON PAPERS and The Agency chooses DETAILED INSPECTION, the you will be caught 90% of the time. </li>
         <li>If you choose COMPLIANCE ON PAPERS and The Agency chooses QUICK INSPECTION, the you will not be caught.</li>
          </ul>
+        <p>
+            You will now play 5 trial and {{Constants.num_rounds}} real rounds of this game.If you have understood the game and the rules please click NEXT to begin playing.
+        </p>
 {% endif %}
     <!--    <p>You will collect the points according to the table below:</p>
 
@@ -103,8 +109,6 @@ will be matched with will determine your earnings. In each round you will start 
             <td>{{ Constants.firm_NN}}, {{ Constants.insp_NN}}</td>
         </tr>
     </table>-->
-<p> You will now play {{Constants.num_rounds}} rounds of this game. In each round you will see the payoff table and decide about your choice.
-    If you have understood the game and the rules please click Next to begin playing.</p>
 </div>
 </div>
 {% next_button %}

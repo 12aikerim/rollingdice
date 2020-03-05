@@ -9,6 +9,9 @@
 {% if player.role == 'firm' %}
     <div class="form-group required">
         <h5> Round # {{player.round_number}}</h5>
+        {% if player.round_number < 6 %}
+        <h6> *TRIAL ROUND*</h6>{%else%}{%endif%}
+
         <p> You are Player A. Make your choice accordingly.</p>
         <p>In each cell the number on the left indicates points for YOU and the number on the right
             indicates points for Player B.</p>
@@ -38,7 +41,9 @@
     </div>
 {% else %}
 <div class="form-group required">
-     <p> Round # {{player.round_number}}</p>
+     <h5> Round # {{player.round_number}} </h5>
+    {% if player.round_number < 6 %}
+    <h6> *TRIAL ROUND*</h6>{%else%}{%endif%}
     <p> You are Player B. Make your choice accordingly.</p>
     <p>In each cell the number on the left indicates points for Player A and the number on the right
             indicates points for YOU.</p>

@@ -8,8 +8,6 @@ from otree.api import (
     Currency as c,
     currency_range,
 )
-
-
 import random
 import numpy as np
 author = 'vouch11'
@@ -17,15 +15,15 @@ author = 'vouch11'
 doc = """
 Test 3-by-3 inspector vs. firm game 
 """
-p = []
+
 
 
 class Constants(BaseConstants):
     name_in_url = 'game2'
     players_per_group = 2
-    num_rounds = 4
+    num_rounds = 10
     k = 3  # number of randomly selected rounds
-    index_list = sorted(random.sample(range(num_rounds), k))
+    index_list = sorted(random.sample(range(5,num_rounds), k))
     print('indexes game2: ', index_list)
     instructions_template = 'Game2/Instructions.html'
 
