@@ -22,7 +22,7 @@ Test 2-by-2 inspector vs. firm game
 class Constants(BaseConstants):
     name_in_url = 'game3'
     players_per_group = 2
-    num_rounds = 10
+    num_rounds = 30
     k = 3  # number of randomly selected rounds
     Revenue = 60
     cost = 40

@@ -10,7 +10,13 @@
 <div class="form-group required">
      <h5> Round # {{player.round_number}}</h5>
     {% if player.round_number < 6 %}
-    <h6> *TRIAL ROUND*</h6>{%else%}{%endif%}
+       <div class="alert alert-info">
+        This is a trial round.
+       </div>
+        {%elif player.round_number == 6 %}
+        <div class="alert alert-warning">
+            <strong>Attention!</strong> Real game rounds start now.
+        </div> {%else%} {%endif%}
     <p> You are Player A. Make your choice accordingly.</p>
     <p>In each cell the number on the left indicates points for YOU and the number on the right
             indicates points for Player B.</p>
@@ -53,7 +59,13 @@
 <div class="form-group required">
      <p> Round # {{player.round_number}}</p>
     {% if player.round_number < 6 %}
-    <h6> *TRIAL ROUND*</h6>{%else%}{%endif%}
+       <div class="alert alert-info">
+        This is a trial round.
+       </div>
+        {%elif player.round_number == 6 %}
+        <div class="alert alert-warning">
+            <strong>Attention!</strong> Real game rounds start now.
+        </div> {%else%} {%endif%}
     <p> You are Player B. Make your choice accordingly.</p>
     <p>In each cell the number on the left indicates points for Player A and the number on the right
             indicates points for YOU.</p>

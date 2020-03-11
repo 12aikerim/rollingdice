@@ -1,6 +1,10 @@
 {% extends "global/Page.html" %}
 {% load otree %}
-
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
 {% block title %}
     Your Choice
 {% endblock %}
@@ -10,7 +14,13 @@
     <div class="form-group required">
         <h5> Round # {{player.round_number}}</h5>
         {% if player.round_number < 6 %}
-        <h6> *TRIAL ROUND*</h6>{%else%}{%endif%}
+       <div class="alert alert-info">
+        This is a trial round.
+       </div>
+        {%elif player.round_number == 6 %}
+        <div class="alert alert-warning">
+            <strong>Attention!</strong> Real game rounds start now.
+        </div> {%else%} {%endif%}
 
         <p> You are Player A. Make your choice accordingly.</p>
         <p>In each cell the number on the left indicates points for YOU and the number on the right
@@ -43,7 +53,13 @@
 <div class="form-group required">
      <h5> Round # {{player.round_number}} </h5>
     {% if player.round_number < 6 %}
-    <h6> *TRIAL ROUND*</h6>{%else%}{%endif%}
+       <div class="alert alert-info">
+        This is a trial round.
+       </div>
+        {%elif player.round_number == 6 %}
+        <div class="alert alert-warning">
+            <strong>Attention!</strong> Real game rounds start now.
+        </div> {%else%} {%endif%}
     <p> You are Player B. Make your choice accordingly.</p>
     <p>In each cell the number on the left indicates points for Player A and the number on the right
             indicates points for YOU.</p>

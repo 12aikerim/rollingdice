@@ -39,14 +39,14 @@ class Player(BasePlayer):
             [False,'No'],
             [True,'Yes'],
         ],
-        label='3) Are you a citizen of Singapore?',
+        label='3) Are you a citizen of Kazakhstan?',
         widget=widgets.RadioSelect,
     )
     residence = models.IntegerField(
         choices=[
-            [1, 'Mostly in Singapore'],
-            [2, 'Both in and outside Singapore'],
-            [3, 'Mostly outside Singapore']],
+            [1, 'Mostly in Kazakhstan'],
+            [2, 'Both in and outside of Kazakhstan'],
+            [3, 'Mostly outside of Kazakhstan']],
             label='4) Where have you been living in the past 10 years of your life?',
             widget=widgets.RadioSelect,
     )

@@ -29,7 +29,10 @@
     <p>
         As a result, you earned {{ player.payoff }} in round # {{player.round_number}}.
     </p>
-
+{% if player.round_number == 5 %}
+       <div class="alert alert-success">
+        <strong> You finished all trial rounds.</strong> The real game will start from the next round!
+       </div>{%else%} {%endif%}
     {% next_button %}
 
 

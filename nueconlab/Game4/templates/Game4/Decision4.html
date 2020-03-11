@@ -37,8 +37,15 @@
     <div class="form-group required">
         <h5> Round # {{player.round_number}}</h5>
         {% if player.round_number < 6 %}
-        <h6> *TRIAL ROUND*</h6>{%else%}{%endif%}
+       <div class="alert alert-info">
+        This is a trial round.
+       </div>
+        {%elif player.round_number == 6 %}
+        <div class="alert alert-warning">
+            <strong>Attention!</strong> Real game rounds start now.
+        </div> {%else%} {%endif%}
 
+        <p> You are the Firm. You start with {{Budget|c}}. Make your choice accordingly from options below.</p>
         <table class="table " style="width: auto;">
         <tr>
             <td> </td>
@@ -103,9 +110,15 @@
 <div class="form-group required">
         <h5> Round # {{player.round_number}}</h5>
         {% if player.round_number < 6 %}
-        <h6> *TRIAL ROUND*</h6>{%else%}{%endif%}
+       <div class="alert alert-info">
+        This is a trial round.
+       </div>
+        {%elif player.round_number == 6 %}
+        <div class="alert alert-warning">
+            <strong>Attention!</strong> Real game rounds start now.
+        </div> {%else%} {%endif%}
 
-    <p> You are the Agency. You start with {{Budget|c}}. Make your choice accordingly from options below</p>
+    <p> You are the Agency. You start with {{Budget|c}}. Make your choice accordingly from options below.</p>
         <table class="table " style="width: auto;">
         <tr><td> </td>
             <td ><button name="decision" value="Full_Inspection" class="btn btn-primary btn-large">DETAILED INSPECTION</button></td>

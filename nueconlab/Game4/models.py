@@ -21,7 +21,7 @@ Test 3-by-3 inspector vs. firm game
 class Constants(BaseConstants):
     name_in_url = 'game4'
     players_per_group = 2
-    num_rounds = 10
+    num_rounds = 30
     k = 3  # number of randomly selected rounds
     index_list = sorted(rand.sample(range(5,num_rounds), k))
     print('indexes game4: ', index_list)
@@ -60,8 +60,8 @@ class Constants(BaseConstants):
     insp_PN = c(10)  # not inspect when paritally comply
 
     insp_NF = c(20)  # full inspection when not comply
-    insp_NL = c(50)  # light inspection when not comply with 90% chance of fine
-    insp_NF10 = c(0) # light inspection when not comply with 10% chance of fine
+    insp_NL = c(50)  # light inspection when not comply with 50% chance of fine
+    insp_NF10 = c(0) # light inspection when not comply with 50% chance of fine
     insp_NN = c(10)  # not inspect when not comply
 
 
@@ -73,7 +73,15 @@ class Subsession(BaseSubsession):
 
 
 class Group(BaseGroup):
+    firm_PF = models.CurrencyField(initial=c(100))
+    firm_NL = models.CurrencyField(initial=c(200))
+
     def set_payoffs(self):
+        self.firm_PF = c(np.random.choice([50, 0], 1, p=[0.1, 0.9]).item(0))
+        print("changed value of firm_PF in group : ", self.firm_PF)
+        self.firm_NL = c(np.random.choice([60, 10], 1, p=[0.5, 0.5]).item(0))
+        print("modified value of firm_NL in group", self.firm_PF)
+
         for p in self.get_players():
             p.set_payoff()
     pass
@@ -96,33 +104,32 @@ class Player(BasePlayer):
         return self.get_others_in_group()[0]
 
     def set_payoff(self):
-        x=c(np.random.choice([50,0],1,p=[0.1,0.9]).item(0))
-        y=c(np.random.choice([60,10],1,p=[0.5,0.5]).item(0))
+
         payoff_matrix = dict(
             Fully_Comply=dict(
                 Full_Inspection=Constants.firm_fully_comply,
                 Light_Inspection=Constants.firm_fully_comply,
-                No_Inspection = Constants.firm_fully_comply,
+                No_Inspection=Constants.firm_fully_comply,
             ),
             Partially_Comply=dict(
-                Full_Inspection=x,
+                Full_Inspection=self.group.firm_PF,
                 Light_Inspection=Constants.firm_PL,
                 No_Inspection=Constants.firm_PN,
             ),
             Not_Comply=dict(
                 Full_Inspection=Constants.firm_NF,
-                Light_Inspection=y,
+                Light_Inspection=self.group.firm_NL,
                 No_Inspection=Constants.firm_NN,
             ),
-            Full_Inspection = dict(
-                Fully_Comply = Constants.insp_FI,
-                Partially_Comply = c(-30 if x==c(50) else 20),
-                Not_Comply = Constants.insp_NF,
+            Full_Inspection=dict(
+                Fully_Comply=Constants.insp_FI,
+                Partially_Comply=c(-30 if self.group.firm_PF == c(50) else 20),
+                Not_Comply=Constants.insp_NF,
             ),
             Light_Inspection=dict(
                 Fully_Comply=Constants.insp_FL,
                 Partially_Comply=Constants.insp_PL,
-                Not_Comply=c(50 if y ==c(10) else 0),
+                Not_Comply=c(50 if self.group.firm_NL == c(10) else 0),
             ),
             No_Inspection=dict(
                 Fully_Comply=Constants.insp_FN,
