@@ -16,62 +16,79 @@ Game Four
 {% if player.role == 'inspector'%}
 
     <p>
-        In this game you will keep the role of Agency as you had in Game Three. Again,
-you will be matched with a different player in the other role in each round.
-And again, your decisions together with the decisions of the people that you
-will be matched with will determine your earnings. In each round you will start with {{Budget|c}}.</p>
-        <p>
-        The strategies available to each player are similar to the previous game and the cost of environmental damage is {{environment|c}}.
-            But in this game both players have one more option available before they decide.
+    This game is very similar to the previous game. You will keep the role of the Agency. The strategies available to each player are similar to the previous game and the cost of environmental damage is again 50 points. Again, you will be matched with a different player (a Firm) in each round. And again, your decisions together with the decisions of the people that you will be matched with will determine your earnings.
+        In each round you will start with 60 points. But now you have two types of inspectors:
     </p>
-        <p>
-            You can now hire two types of inspectors.
             <ul>
         <li>Expert inspectors cost {{expert|c}} but they can conduct a DETAILED INSPECTION, which increases the
             chance of detection if the Firm is not complying.</li>
         <li>Inexperienced inspectors cost just {{intern|c}} but they can conduct only a QUICK INSPECTION which
             decreases the chance of detection if the Firm is not complying.</li>
             </ul>
-        The new alternative option for The Firm is COMPLIANCE ON PAPERS. FULL COMPLIANCE costs  {{cost|c}}
-        to the Firm and eliminates the possibility of a fine. COMPLIANCE ON PAPERS costs {{on_paper|c}}. It reduces the probability of
-        detection but it does not prevent environmental damage.
-         <p>The probability of the fine depends on the Firm and Inspectors mutual choices:</p>
+        <p>
+            For your information, the firm also has an alternative option:
+        </p>
         <ul>
-        <li> If you decide to conduct DETAILED INSPECTION and Firm decides to NOT COMPLY, the Firm will be caught.</li>
-        <li>If you decide to conduct QUICK INSPECTION and Firm decides to NOT COMPLY, you will catch them 50% of the time.</li>
-            <li> If you choose DETAILED INSPECTION and Firm chooses COMPLIANCE ON PAPERS, the Firm will be caught 90% of the time. </li>
-        <li>If you choose QUICK INSPECTION and Firm chooses COMPLIANCE ON PAPERS, the Firm will not be caught.</li>
+            <li>
+                The Firm can now submit some paperwork and pretend as if they are complying, which we call COMPLIANCE-ON-PAPER. This kind of paperwork costs the firm 10 points. Note that COMPLIANCE ON PAPER reduces the probability of detection but it does not prevent environmental damage.
+            </li>
+            <li>
+               In comparison, FULL COMPLIANCE costs 40 points to the Firm (as in the previous game). Full COMPLIANCE eliminates the possibility of a fine if the Agency sends Expert inspectors for DETAILED INSPECTION.
+            </li>
         </ul>
+
+        <p>The probability of the catching the Firm and collecting a fine is determined according to the following:</p>
+      <ul>
+          <li>
+              If the Agency decides for a DETAILED INSPECTION and Firm decides to NOT COMPLY, the Firm will be caught and pay 50 points to the Agency.
+          </li>
+          <li>
+              If the Agency decides to conduct a QUICK INSPECTION and Firm decides to NOT COMPLY, the Firm will be caught (and will pay 50-points fine to the Agency) 50% of the time.
+          </li>
+          <li>
+              If the Agency decides to conduct a DETAILED INSPECTION and Firm chooses COMPLIANCE ON PAPER, the Firm will be caught (and will pay 50-points fine to the Agency) 90% of the time.
+          </li>
+          <li>
+              If the Agency decides to conduct a QUICK INSPECTION and Firm chooses COMPLIANCE ON PAPER, the Firm will not be caught and will not pay a fine.
+          </li>
+      </ul>
         <p>
             You will now play 5 trial and {{Constants.num_rounds}} real rounds of this game.If you have understood the game and the rules please click NEXT to begin playing.
         </p>
 {% else %}
      <p>
-        In this game you will keep the role of the Firm as you had in Game Three. Again,
-you will be matched with a different player in the other role in each round.
-And again, your decisions together with the decisions of the people that you
-will be matched with will determine your earnings. In each round you will start with {{Revenue|c}}.</p>
+        This game is very similar to the previous game. You will keep the role of a Firm.
+         The strategies available to each player are similar to the previous game and the cost of environmental damage is again 50 points.
+         Again, you will be matched with a different player (an Agency) in each round.
+         And again, your decisions together with the decisions of the players that you will be matched with will determine your earnings.
+     </p>
         <p>
-        The strategies available to each player are similar to the previous game and the cost of environmental damage is {{environment|c}}.
-            But in this game both players have one more option available before they decide.
+            In each round you will start with 60 points. But now the Agency has two types of inspectors:
     </p>
-        <p>
-            You can now choose between two types of compliance to environmental regulations:
-        </p>
+
             <ul>
-        <li>COMPLIANCE ON PAPERS, which will cost you {{on_paper|c}}. It reduces the probability of being penalized by Agency to 90%, but it
-        does not prevent environmental damage.</li>
-        <li>FULL COMPLIANCE, which will cost you {{cost|c}}. It reduces the probability of being penalized by Agency to 0%. </li>
+        <li>Expert inspectors cost the Agency 40 points but they can conduct a DETAILED INSPECTION, which increases the chance of catching the Firm when they are not complying.</li>
+        <li>Inexperienced inspectors cost the Agency just 10 points but they can conduct only a QUICK INSPECTION which lowers the probability of detection if the Firm is not complying.</li>
             </ul>
-       <p>The new alternative for the Agency is that now they can decide what kind of inspector to hire for the inspection. They can choose
-        between expert (DETAILED INSPECTION) and inexperienced inspectors (QUICK INSPECTION), that will cost them {{expert|c}} and {{intern|c}} respectively. </p>
-    The probability of the fine depends on the Firm and Inspectors mutual choices:</p>
-         <ul>
-        <li> If you decide to NOT COMPLY and The Agency chooses DETAILED INSPECTION, the you will be caught.The fine is {{Constants.fine|c}}</li>
-        <li>If you decide to NOT COMPLY and The Agency chooses QUICK INSPECTION, the you will be caught 50% of the time.</li>
-        <li> If you choose COMPLIANCE ON PAPERS and The Agency chooses DETAILED INSPECTION, the you will be caught 90% of the time. </li>
-        <li>If you choose COMPLIANCE ON PAPERS and The Agency chooses QUICK INSPECTION, the you will not be caught.</li>
-         </ul>
+       <p>You, as the Firm, also have an alternative option: In addition to FULL COMPLIANCE, you can now submit some paperwork and pretend as if you are complying, which we call COMPLIANCE ON PAPER.
+           This kind of paperwork costs you 10 points in comparison to FULL COMPLAINCE which costs 40 points, as before. Note that COMPLIANCE ON PAPER reduces the probability of detection but it does not prevent environmental damage.
+           Full COMPLIANCE eliminates the possibility of a fine if the Agency sends Expert inspectors for DETAILED INSPECTION.
+       </p>
+          <p>The probability of the catching the Firm and collecting a fine is determined according to the following:</p>
+      <ul>
+          <li>
+              If the Agency decides for a DETAILED INSPECTION and Firm decides to NOT COMPLY, the Firm will be caught and pay 50 points to the Agency.
+          </li>
+          <li>
+              If the Agency decides to conduct a QUICK INSPECTION and Firm decides to NOT COMPLY, the Firm will be caught (and will pay 50-points fine to the Agency) 50% of the time.
+          </li>
+          <li>
+              If the Agency decides to conduct a DETAILED INSPECTION and Firm chooses COMPLIANCE ON PAPER, the Firm will be caught (and will pay 50-points fine to the Agency) 90% of the time.
+          </li>
+          <li>
+              If the Agency decides to conduct a QUICK INSPECTION and Firm chooses COMPLIANCE ON PAPER, the Firm will not be caught and will not pay a fine.
+          </li>
+      </ul>
         <p>
             You will now play 5 trial and {{Constants.num_rounds}} real rounds of this game.If you have understood the game and the rules please click NEXT to begin playing.
         </p>

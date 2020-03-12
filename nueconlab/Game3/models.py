@@ -22,7 +22,7 @@ Test 2-by-2 inspector vs. firm game
 class Constants(BaseConstants):
     name_in_url = 'game3'
     players_per_group = 2
-    num_rounds = 30
+    num_rounds = 35
     k = 3  # number of randomly selected rounds
     Revenue = 60
     cost = 40
@@ -32,7 +32,8 @@ class Constants(BaseConstants):
     intern = 10
     fine = 50
     environment = 50
-    index_list = sorted(random.sample(range(5,num_rounds), k))
+    index_list = [25,32,33]
+        #sorted(random.sample(range(5,num_rounds), k))
     print('indexes game3: ', index_list)
     # constants with links to pages
     instructions_template = 'Game3/Instructions.html'

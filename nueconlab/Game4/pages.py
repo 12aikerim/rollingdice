@@ -59,6 +59,8 @@ class Results(Page):
         return dict(
             my_decision=me.decision,
             opponent_decision=opponent.decision,
+            fail = c(-30),
+            zero = c(0),
 
         )
 

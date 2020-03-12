@@ -8,23 +8,23 @@
 {% block content %}
 
     <ol>
-        <li>Will you hold the same role assigned to you at the beginning of the experiment throughout the game?</li>
+        <li>Will you play against the computer in this experiment?</li>
         <ul>
         <li> Your answer: {{player.q1}}.</li>
-            <li>Correct answer: Yes</li>
+            <li>Correct answer: No</li>
         </ul>
         <li>Will your decisions affect the final payoff you will collect?</li>
         <ul>
         <li> Your answer: {{player.q2}}.</li>
             <li>Correct answer: Yes</li>
         </ul>
-        <li>Do payoffs of each game get selected from each 30 rounds towards your final payoff?</li>
+        <li>Are payoffs from each round in every game added to your total earnings?</li>
         <ul>
         <li> Your answer: {{player.q3}}.</li>
             <li>Correct answer: No</li>
         </ul>
     </ol>
-    <p>Review answers before starting the game</p>
+    <p>Review answers before starting the game.</p>
 
     {% next_button %}
 {% endblock %}

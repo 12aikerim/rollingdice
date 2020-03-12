@@ -24,7 +24,8 @@ class Constants(BaseConstants):
     players_per_group = 2
     num_rounds = 35
     k = 3 #number of randomly selected rounds
-    index_list = sorted(random.sample(range(5,num_rounds), k))
+    index_list = [26,6,31]
+    #sorted(random.sample(range(5,num_rounds), k))
     print('indexes game1: ', index_list)
 
     # constants with links to pages
@@ -63,8 +64,6 @@ class Subsession(BaseSubsession):
 
     def creating_session(self):
         self.group_randomly(fixed_id_in_group=True)
-
-
     pass
 
 
@@ -84,7 +83,7 @@ class Player(BasePlayer):
 
     q1 = models.StringField(
         choices=['Yes', 'No'],
-        label='Will you hold the same role assigned to you at the beginning of the experiment throughout the game?',
+        label='Will you play against the computer in this experiment?',
         widget=widgets.RadioSelect,
     )
     q2 = models.StringField(
@@ -94,7 +93,7 @@ class Player(BasePlayer):
     )
     q3 = models.StringField(
         choices=[['Yes', 'Yes'], ['No', 'No']],
-        label='Do payoffs of each game get selected from each 30 rounds towards your final payoff?',
+        label='Are payoffs from each round in every game added to your total earnings?',
         widget=widgets.RadioSelect,
     )
 
@@ -130,6 +129,7 @@ class Player(BasePlayer):
 
     def create_payment_list(self):
         self.participant.vars['lump'] = []
+        return self.participant.vars['lump']
 
     pass
 

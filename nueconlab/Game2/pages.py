@@ -54,6 +54,7 @@ class Results(Page):
         return dict(
             my_decision=me.decision,
             opponent_decision=opponent.decision,
+            fail = c(-30),
         )
     timeout_seconds = 30
     pass
@@ -64,7 +65,6 @@ class FinalResults(Page):
         return self.round_number == Constants.num_rounds
 
     def vars_for_template(self):
-
         a=self.player.total_payoff()
         return a
 
