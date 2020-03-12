@@ -43,8 +43,8 @@ ROOMS = [
         participant_label_file='_rooms/trial.txt',
     ),
     dict(name='live_demo', display_name='Room for live demo (no participant labels)'),
-    dict(name='study1', display_name= 'Room for session 1 (Singapore)', participant_label_file='_rooms/studySG1.txt'),
-    dict(name='study2', display_name= 'Room for session 2 (Singapore)', participant_label_file='_rooms/studySG2.txt'),
+    dict(name='study1', display_name= 'Room for session 1 ', participant_label_file='_rooms/session1.txt'),
+    dict(name='study2', display_name= 'Room for session 2 ', participant_label_file='_rooms/session2.txt'),
     dict(name='MPP2021', display_name= 'Room for trial session (MPP2021)', participant_label_file='_rooms/MPP2021.txt')
 ]
 
