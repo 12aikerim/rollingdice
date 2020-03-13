@@ -21,9 +21,9 @@ Test 3-by-3 inspector vs. firm game
 class Constants(BaseConstants):
     name_in_url = 'game4'
     players_per_group = 2
-    num_rounds = 10
+    num_rounds = 35
     k = 3  # number of randomly selected rounds
-    index_list = [6,1,2]
+    index_list = [16,17,29]
         #sorted(rand.sample(range(5,num_rounds), k))
     print('indexes game4: ', index_list)
     Revenue = 60
@@ -89,6 +89,7 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+
     def role(self):
         if self.id_in_group == 1:
             return 'inspector'
@@ -139,10 +140,10 @@ class Player(BasePlayer):
             ),
         )
         self.payoff = payoff_matrix[self.decision][self.other_player().decision]
+    def create_payment_list(self):
+        self.participant.vars['lump'] = []
+        return self.participant.vars['lump']
 
-    def check_lump(self):
-        while len(self.participant.vars['lump'])!=4:
-            self.participant.var['lump'].pop()
 
     def total_payoff(self):
 
@@ -157,7 +158,7 @@ class Player(BasePlayer):
 
         total = sum(random_payoffs)
         self.participant.vars['lump'].append(total)
-        self.check_lump()
+
         print("accumulated payoffs in game4: ", self.participant.vars['lump'])
         self.participant.payoff = sum(self.participant.vars['lump'])
 
