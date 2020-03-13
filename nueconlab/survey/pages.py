@@ -15,8 +15,7 @@ class QuestionaireOnExperiment(Page):
     form_fields = ['Q{}'.format(i) for i in range(1, 11)]
 
 class FinalPageAfterSurvey(Page):
-    def vars_for_template(self):
-        self.participant_vars['lump']=[]
+
     pass
 
 

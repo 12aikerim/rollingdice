@@ -24,8 +24,7 @@ class Constants(BaseConstants):
     players_per_group = 2
     num_rounds = 35
     k = 3 #number of randomly selected rounds
-    index_list = [26,6,31]
-    #sorted(random.sample(range(5,num_rounds), k))
+    index_list = [11,31,33]#sorted(random.sample(range(5,num_rounds), k))
     print('indexes game1: ', index_list)
 
     # constants with links to pages
@@ -133,6 +132,12 @@ class Player(BasePlayer):
 
     pass
 
+    def check_lump(self):
+        while len(self.participant.vars['lump'])!=1:
+            self.participant.var['lump'].pop()
+
+    pass
+
     def total_payoff(self):
 
         list_of_payments = [p.payoff for p in self.in_all_rounds()]
@@ -150,6 +155,7 @@ class Player(BasePlayer):
         total=sum(random_payoffs)
         self.participant.payoff = total
         self.participant.vars['lump']=[total]
+        self.check_lump()
         print("accumulated payoff in game 1: ", self.participant.vars['lump'])
         return dict(
             list_of_all_payments=list_of_payments,

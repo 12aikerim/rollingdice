@@ -32,7 +32,7 @@ class Constants(BaseConstants):
     intern = 10
     fine = 50
     environment = 50
-    index_list = [25,32,33]
+    index_list = [9,15,34]
         #sorted(random.sample(range(5,num_rounds), k))
     print('indexes game3: ', index_list)
     # constants with links to pages
@@ -114,6 +114,10 @@ class Player(BasePlayer):
         )
         self.payoff = payoff_matrix[self.decision][self.other_player().decision]
 
+    def check_lump(self):
+        while len(self.participant.vars['lump'])!=3:
+            self.participant.var['lump'].pop()
+
 
     def total_payoff(self):
         list_of_payments = [p.payoff for p in self.in_all_rounds()]
@@ -127,6 +131,7 @@ class Player(BasePlayer):
 
         total = sum(random_payoffs)
         self.participant.vars['lump'].append(total)
+        self.check_lump()
         print("accumulated payoffs in game3: ", self.participant.vars['lump'])
         self.participant.payoff = sum(self.participant.vars['lump'])
 
