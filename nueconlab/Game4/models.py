@@ -146,7 +146,6 @@ class Player(BasePlayer):
 
     def total_payoff(self):
 
-
         list_of_payments = [p.payoff for p in self.in_all_rounds()]
         print('all payments: ', list_of_payments)
         random_payoffs = [list_of_payments[p] for p in Constants.index_list]

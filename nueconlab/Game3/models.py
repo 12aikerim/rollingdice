@@ -114,12 +114,16 @@ class Player(BasePlayer):
         )
         self.payoff = payoff_matrix[self.decision][self.other_player().decision]
 
-    def check_lump(self):
-        while len(self.participant.vars['lump'])!=3:
-            self.participant.var['lump'].pop()
+    def create_payment_list(self):
+        self.participant.vars['lump'] = []
+        return self.participant.vars['lump']
+
+    pass
+
 
 
     def total_payoff(self):
+        self.participant.vars['lump'] = []
         list_of_payments = [p.payoff for p in self.in_all_rounds()]
         print('all payments: ', list_of_payments)
         random_payoffs = [list_of_payments[p] for p in Constants.index_list]
