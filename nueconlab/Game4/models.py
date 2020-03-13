@@ -21,9 +21,9 @@ Test 3-by-3 inspector vs. firm game
 class Constants(BaseConstants):
     name_in_url = 'game4'
     players_per_group = 2
-    num_rounds = 35
+    num_rounds = 10
     k = 3  # number of randomly selected rounds
-    index_list = [16,17,29]
+    index_list = [6,1,2]
         #sorted(rand.sample(range(5,num_rounds), k))
     print('indexes game4: ', index_list)
     Revenue = 60
