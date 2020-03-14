@@ -15,6 +15,8 @@ class QuestionaireOnExperiment(Page):
     form_fields = ['Q{}'.format(i) for i in range(1, 11)]
 
 class FinalPageAfterSurvey(Page):
+    def is_displayed(self):
+        return self.round_number == Constants.num_rounds
 
     pass
 

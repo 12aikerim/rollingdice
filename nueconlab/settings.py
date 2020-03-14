@@ -17,7 +17,7 @@ SESSION_CONFIGS = [
         name='inspection_game',
         display_name = '4 Games',
         num_demo_participants = 2,
-        app_sequence = ['Game4','payment_info1','survey'],
+        app_sequence = ['Game1','Game2','Game3','Game4','payment_info1','survey'],
     ),
     dict(
         name='survey',

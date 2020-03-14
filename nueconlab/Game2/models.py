@@ -23,8 +23,7 @@ class Constants(BaseConstants):
     players_per_group = 2
     num_rounds = 35
     k = 3  # number of randomly selected rounds
-    index_list = [6,10,24]
-    #sorted(random.sample(range(5,num_rounds), k))
+    index_list = sorted(random.sample(range(5,num_rounds), k))
     print('indexes game2: ', index_list)
     instructions_template = 'Game2/Instructions.html'
 
@@ -130,7 +129,8 @@ class Player(BasePlayer):
 
     def check_lump(self):
         while len(self.participant.vars['lump'])!=2:
-            self.participant.var['lump'].pop()
+            self.participant.vars['lump'].pop()
+
     def total_payoff(self):
         list_of_payments = [p.payoff for p in self.in_all_rounds()]
         print('all payments: ', list_of_payments)

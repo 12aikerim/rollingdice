@@ -23,8 +23,7 @@ class Constants(BaseConstants):
     players_per_group = 2
     num_rounds = 35
     k = 3  # number of randomly selected rounds
-    index_list = [16,17,29]
-        #sorted(rand.sample(range(5,num_rounds), k))
+    index_list = sorted(rand.sample(range(5,num_rounds), k))
     print('indexes game4: ', index_list)
     Revenue = 60
     cost = 40
@@ -140,9 +139,10 @@ class Player(BasePlayer):
             ),
         )
         self.payoff = payoff_matrix[self.decision][self.other_player().decision]
-    def create_payment_list(self):
-        self.participant.vars['lump'] = []
-        return self.participant.vars['lump']
+
+    def check_lump(self):
+        while len(self.participant.vars['lump'])!=4:
+            self.participant.vars['lump'].pop()
 
 
     def total_payoff(self):
@@ -158,7 +158,7 @@ class Player(BasePlayer):
 
         total = sum(random_payoffs)
         self.participant.vars['lump'].append(total)
-
+        self.check_lump()
         print("accumulated payoffs in game4: ", self.participant.vars['lump'])
         self.participant.payoff = sum(self.participant.vars['lump'])
 

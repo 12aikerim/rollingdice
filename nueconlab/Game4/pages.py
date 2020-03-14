@@ -71,10 +71,7 @@ class Results(Page):
 class FinalResults(Page):
     def is_displayed(self):
         return self.round_number == Constants.num_rounds
-
-
     def vars_for_template(self):
-        self.player.create_payment_list()
         return self.player.total_payoff()
 
     pass
